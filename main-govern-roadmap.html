@@ -1608,163 +1608,155 @@
 
     <script>
         // Data
-        const recentlyCompleted = [
-            { task: "Constitutional mathematics breakthrough: Hamilton's Ratio validated", category: "Constitutional Mathematics & Governance (2017-2025)", timeframe: "December 2017" },
-            { task: "First Governance operational: 94 Governors, 5 ballots, 0 constitutional violations", category: "Constitutional Mathematics & Governance (2017-2025)", timeframe: "2017-2025 (8 years)" },
-            { task: "BFT Democracy validated with $28.03MM in real economic decisions", category: "Constitutional Mathematics & Governance (2017-2025)", timeframe: "2017-2025 (8 years)" },
-            { task: "100% participation maintained under economic pressure", category: "Constitutional Mathematics & Governance (2017-2025)", timeframe: "2017-2025 (8 years)" },
-            { task: "5 global data centers deployed: Santa Clara, Ashburn, Toronto, Melbourne, Sydney", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2017-2024" },
-            { task: "26,400 vCPUs operational across distributed infrastructure", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2017-2024" },
-            { task: "240 TB RAM capacity deployed", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2017-2024" },
-            { task: "12 PB (12,000 TB) permanent storage operational", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2017-2024" },
-            { task: "Byzantine Fault Tolerant (3f+1) with 99.99999999% reliability achieved", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2017-2024" },
-            { task: "5-location IPFS redundancy operational for permanent storage", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2024-2025" },
-            { task: "498 AI endpoints operational (Version 0.1, pending formal governance ratification)", category: "STORE AI Constitutional Framework (2024-2025)", timeframe: "2024-2025" },
-            { task: "Protocol-level dynamic pricing intelligence operational", category: "STORE AI Constitutional Framework (2024-2025)", timeframe: "2024-2025" },
-            { task: "Cloudspace fee calculation across permanent storage, compute, bandwidth", category: "STORE AI Constitutional Framework (2024-2025)", timeframe: "2024-2025" },
-            { task: "Democratic governance framework designed for AI endpoints", category: "STORE AI Constitutional Framework (2024-2025)", timeframe: "2024-2025" },
-            { task: "CLEAR protocol 7-step automated lifecycle operational", category: "CLEAR Protocol & Payment Infrastructure (2024-2025)", timeframe: "2024-2025" },
-            { task: "63-second average transaction completion proven in production", category: "CLEAR Protocol & Payment Infrastructure (2024-2025)", timeframe: "2024-2025" },
-            { task: "KYC → Payment → SAFT → IPFS → CLEAR processing integrated", category: "CLEAR Protocol & Payment Infrastructure (2024-2025)", timeframe: "2024-2025" },
-            { task: "Permanent Cloud ID generation (CUID2-based) operational", category: "CLEAR Protocol & Payment Infrastructure (2024-2025)", timeframe: "2024-2025" },
-            { task: "Private and Invite-Only STORE Token Sales operational across multiple countries (Malaysia, Switzerland, Nigeria, Germany, UK, Russia, Hungary, Philippines, Netherlands)", category: "Live Token Economy (2024-2025)", timeframe: "2024-2025" },
-            { task: "Automatic cloudspace fee deduction from every transaction (live protocol operations)", category: "Live Token Economy (2024-2025)", timeframe: "2024-2025" },
-            { task: "Real transaction evidence: 1xe6u4y2cyv4 and multiple others proven", category: "Live Token Economy (2024-2025)", timeframe: "2024-2025" },
-            { task: "STORE Pay operational", category: "Live Token Economy (2024-2025)", timeframe: "October 2025" },
-            { task: "First Treasury monetary policy (8 years operational)", category: "Economic & Monetary Systems (2017-2025)", timeframe: "2017-2025 (8 years)" },
-            { task: "718.8MM STORE allocated supply governed democratically", category: "Economic & Monetary Systems (2017-2025)", timeframe: "2017-2025" },
-            { task: "Constitutional 3% inflation cap enforced democratically", category: "Economic & Monetary Systems (2017-2025)", timeframe: "2017-2025 (8 years)" },
-            { task: "Revenue allocation model designed (70/25/5)", category: "Economic & Monetary Systems (2017-2025)", timeframe: "2024-2025" },
-            { task: "Second Treasury architecture designed (AI-governed monetary system)", category: "Economic & Monetary Systems (2017-2025)", timeframe: "2024-2025" },
-            { task: "Swiss Association legal structure designed with MME (4+ years collaboration)", category: "Legal & Regulatory Framework (2021-2025)", timeframe: "2021-2025" },
-            { task: "Multi-jurisdictional governance research (UK, Ireland, Liechtenstein, Singapore, Switzerland)", category: "Legal & Regulatory Framework (2021-2025)", timeframe: "2021-2024" },
-            { task: "Launch Procedures milestone framework designed (Edison through Armstrong)", category: "Legal & Regulatory Framework (2021-2025)", timeframe: "2024-2025" },
-            { task: "BFT Democracy legal framework developed", category: "Legal & Regulatory Framework (2021-2025)", timeframe: "2021-2025" },
-            { task: "Marcus Aurelius milestone: 67% complete ($860K raised toward $1.33M target, $472K remaining)", category: "Funding Progress Toward $4M Goal", timeframe: "2024-2025" },
-            { task: "Overall Switzerland launch funding: 22% complete ($860K raised, ~$3.14M remaining toward $4M goal)", category: "Funding Progress Toward $4M Goal", timeframe: "2024-2025" },
-            { task: "STORE Explore protocol explorer operational", category: "Developer Services & Tools (2024-2025)", timeframe: "2024-2025" },
-            { task: "STORE AI endpoint API access operational", category: "Developer Services & Tools (2024-2025)", timeframe: "2024-2025" },
-            { task: "Finalize Governor removal voting thresholds and opt-in process", category: "Recent Governance Framework Completions", timeframe: "July 2025" },
-            { task: "Define veto power structure and legal enforceability", category: "Recent Governance Framework Completions", timeframe: "July 2025" },
-            { task: "Determine if Swiss board member is required", category: "Recent Governance Framework Completions", timeframe: "July 2025" },
-            { task: "Identify Swiss representative if mandatory registration triggered", category: "Recent Governance Framework Completions", timeframe: "July 2025" },
-            { task: "Define separation between Governor DAO and Electoral Body (Governor Board)", category: "Recent Governance Framework Completions", timeframe: "September 2025" }
-        ];
+const recentlyCompleted = [
+    { task: "Constitutional mathematics breakthrough: Hamilton's Ratio validated", category: "Constitutional Mathematics & Governance (2017-2025)", timeframe: "December 2017" },
+    { task: "First Governance operational: 94 Governors, 5 ballots, 0 constitutional violations", category: "Constitutional Mathematics & Governance (2017-2025)", timeframe: "2017-2025 (8 years)" },
+    { task: "BFT Democracy validated with $28.03MM in real economic decisions", category: "Constitutional Mathematics & Governance (2017-2025)", timeframe: "2017-2025 (8 years)" },
+    { task: "100% participation maintained under economic pressure", category: "Constitutional Mathematics & Governance (2017-2025)", timeframe: "2017-2025 (8 years)" },
+    { task: "5 global data centers deployed: Santa Clara, Ashburn, Toronto, Melbourne, Sydney", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2017-2024" },
+    { task: "26,400 vCPUs operational across distributed infrastructure", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2017-2024" },
+    { task: "240 TB RAM capacity deployed", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2017-2024" },
+    { task: "12 PB (12,000 TB) permanent storage operational", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2017-2024" },
+    { task: "Byzantine Fault Tolerant (3f+1) with 99.99999999% reliability achieved", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2017-2024" },
+    { task: "5-location IPFS redundancy operational for permanent storage", category: "Layer 0 Infrastructure Deployed (2017-2025)", timeframe: "2024-2025" },
+    { task: "498 AI endpoints operational (Version 0.1, pending formal governance ratification)", category: "STORE AI Constitutional Framework (2024-2025)", timeframe: "2024-2025" },
+    { task: "Protocol-level dynamic pricing intelligence operational", category: "STORE AI Constitutional Framework (2024-2025)", timeframe: "2024-2025" },
+    { task: "Cloudspace fee calculation across permanent storage, compute, bandwidth", category: "STORE AI Constitutional Framework (2024-2025)", timeframe: "2024-2025" },
+    { task: "Democratic governance framework designed for AI endpoints", category: "STORE AI Constitutional Framework (2024-2025)", timeframe: "2024-2025" },
+    { task: "CLEAR protocol 7-step automated lifecycle operational", category: "CLEAR Protocol & Payment Infrastructure (2024-2025)", timeframe: "2024-2025" },
+    { task: "63-second average transaction completion proven in production", category: "CLEAR Protocol & Payment Infrastructure (2024-2025)", timeframe: "2024-2025" },
+    { task: "KYC → Payment → SAFT → IPFS → CLEAR processing integrated", category: "CLEAR Protocol & Payment Infrastructure (2024-2025)", timeframe: "2024-2025" },
+    { task: "Permanent Cloud ID generation (CUID2-based) operational", category: "CLEAR Protocol & Payment Infrastructure (2024-2025)", timeframe: "2024-2025" },
+    { task: "Private and Invite-Only STORE Token Sales operational across multiple countries (Malaysia, Switzerland, Nigeria, Germany, UK, Russia, Hungary, Philippines, Netherlands)", category: "Live Token Economy (2024-2025)", timeframe: "2024-2025" },
+    { task: "Automatic cloudspace fee deduction from every transaction (live protocol operations)", category: "Live Token Economy (2024-2025)", timeframe: "2024-2025" },
+    { task: "Real transaction evidence: 1xe6u4y2cyv4 and multiple others proven", category: "Live Token Economy (2024-2025)", timeframe: "2024-2025" },
+    { task: "STORE Pay operational", category: "Live Token Economy (2024-2025)", timeframe: "October 2025" },
+    { task: "First Treasury monetary policy (8 years operational)", category: "Economic & Monetary Systems (2017-2025)", timeframe: "2017-2025 (8 years)" },
+    { task: "718.8MM STORE allocated supply governed democratically", category: "Economic & Monetary Systems (2017-2025)", timeframe: "2017-2025" },
+    { task: "Constitutional 3% inflation cap enforced democratically", category: "Economic & Monetary Systems (2017-2025)", timeframe: "2017-2025 (8 years)" },
+    { task: "Revenue allocation model designed (70/25/5)", category: "Economic & Monetary Systems (2017-2025)", timeframe: "2024-2025" },
+    { task: "Second Treasury architecture designed (AI-governed monetary system)", category: "Economic & Monetary Systems (2017-2025)", timeframe: "2024-2025" },
+    { task: "Swiss Association legal structure designed with MME (4+ years collaboration)", category: "Legal & Regulatory Framework (2021-2025)", timeframe: "2021-2025" },
+    { task: "Multi-jurisdictional governance research (UK, Ireland, Liechtenstein, Singapore, Switzerland)", category: "Legal & Regulatory Framework (2021-2025)", timeframe: "2021-2024" },
+    { task: "Launch Procedures milestone framework designed (Edison through Armstrong)", category: "Legal & Regulatory Framework (2021-2025)", timeframe: "2024-2025" },
+    { task: "BFT Democracy legal framework developed", category: "Legal & Regulatory Framework (2021-2025)", timeframe: "2021-2025" },
+    { task: "Marcus Aurelius milestone: 67% complete ($860K raised toward $1.33M target, $472K remaining)", category: "Funding Progress Toward $4M Goal", timeframe: "2024-2025" },
+    { task: "Overall Switzerland launch funding: 22% complete ($860K raised, ~$3.14M remaining toward $4M goal)", category: "Funding Progress Toward $4M Goal", timeframe: "2024-2025" },
+    { task: "STORE Explore protocol explorer operational", category: "Developer Services & Tools (2024-2025)", timeframe: "2024-2025" },
+    { task: "STORE AI endpoint API access operational", category: "Developer Services & Tools (2024-2025)", timeframe: "2024-2025" },
+    { task: "Finalize Governor removal voting thresholds and opt-in process", category: "Recent Governance Framework Completions", timeframe: "July 2025" },
+    { task: "Define veto power structure and legal enforceability", category: "Recent Governance Framework Completions", timeframe: "July 2025" },
+    { task: "Determine if Swiss board member is required", category: "Recent Governance Framework Completions", timeframe: "July 2025" },
+    { task: "Identify Swiss representative if mandatory registration triggered", category: "Recent Governance Framework Completions", timeframe: "July 2025" },
+    { task: "Define separation between Governor DAO and Electoral Body (Governor Board)", category: "Recent Governance Framework Completions", timeframe: "September 2025" }
+];
 
-        const inProgress = [
-            { task: "Complete STORE Send (automated token distribution with governance approval)", category: "Payment Infrastructure", est: "Late October - Mid November 2025 (2-4 weeks)", note: "Currently 25% complete - Sequential dependency: STORE Account begins after Send completes" },
-            { task: "Complete STORE Account: Chart of Accounts for protocol", category: "Payment Infrastructure", est: "Mid-Late December 2025 (2-4 weeks after Send)", note: "Currently 25% complete - Sequential dependency: Begins after STORE Send completes" },
-            { task: "Mint additional token sales sub-economies for production", category: "Sub-Economy Development", est: "December 2025 - February 2026", note: "Building infrastructure to power 11 sub-economies total. 10 sub-economies 50% designed. Target: Mint 2-3 priority sub-economies by February 2026 for demonstrations." },
-            { task: "Complete Grace Hopper milestone: Token registration protocol", category: "Token Registration (Post-Launch, Phase 1)", est: "Q1-Q2 2026 (begins after Switzerland launch)", note: "Switzerland launches with operational infrastructure. Token registration begins post-launch, requires +½ ownership wallets registered before Hal Finney can proceed." },
-            { task: "First Governance ballot to ratify founding 498 AI endpoints", category: "Governance", est: "December 2025", note: "Standard ballot process" },
-            { task: "First Governance ballot to approve Switzerland launch", category: "Governance", est: "Q1-Q2 2026", note: "Requires +2/3 approval" },
-            { task: "Package MME submission with working demonstrations", category: "Regulatory", est: "December 2025", note: "" },
-            { task: "Prepare comprehensive utility token classification memo", category: "Regulatory", est: "December 2025", note: "" },
-            { task: "Submit Phase 1 governance proposal to MME", category: "Regulatory", est: "December 2025", note: "" },
-            { task: "Complete Thomas Paine milestone: Achieve +1/3 soft consensus", category: "Constitutional", est: "December 2025", note: "" },
-            { task: "Confirm member compensation structure", category: "Legal", est: "December 2025", note: "" },
-            { task: "Complete Marcus Aurelius milestone fundraising ($472K remaining)", category: "Fundraising", est: "Q1-Q2 2026", note: "" },
-            { task: "Secure funding for Paine milestone ($1.14M required)", category: "Fundraising", est: "Q1-Q2 2026", note: "" }
-        ];
+const inProgress = [
+    { task: "Complete STORE Send (automated token distribution with governance approval)", category: "Payment Infrastructure", est: "Late October - Mid November 2025 (2-4 weeks)", note: "Currently 25% complete - Sequential dependency: STORE Account begins after Send completes" },
+    { task: "Complete STORE Account: Chart of Accounts for protocol", category: "Payment Infrastructure", est: "Mid-Late December 2025 (2-4 weeks after Send)", note: "Currently 25% complete - Sequential dependency: Begins after STORE Send completes" },
+    { task: "Mint additional token sales sub-economies for production", category: "Sub-Economy Development", est: "December 2025 - February 2026", note: "Building infrastructure to power 11 sub-economies total. 10 sub-economies 50% designed. Target: Mint 2-3 priority sub-economies by February 2026 for demonstrations." },
+    { task: "Complete Grace Hopper milestone: Token registration protocol", category: "Token Registration (Post-Launch, Phase 1)", est: "Q1-Q2 2026 (begins after Switzerland launch)", note: "Switzerland launches with operational infrastructure. Token registration begins post-launch, requires +½ ownership wallets registered before Hal Finney can proceed." },
+    { task: "First Governance ballot to ratify founding 498 AI endpoints", category: "Governance", est: "December 2025", note: "Standard ballot process" },
+    { task: "First Governance ballot to approve Switzerland launch", category: "Governance", est: "Q1-Q2 2026", note: "Requires +2/3 approval" },
+    { task: "Package MME submission with working demonstrations", category: "Regulatory", est: "December 2025", note: "" },
+    { task: "Prepare comprehensive utility token classification memo", category: "Regulatory", est: "December 2025", note: "" },
+    { task: "Submit Phase 1 governance proposal to MME", category: "Regulatory", est: "December 2025", note: "" },
+    { task: "Complete Thomas Paine milestone: Achieve +1/3 soft consensus", category: "Constitutional", est: "December 2025", note: "" },
+    { task: "Confirm member compensation structure", category: "Legal", est: "December 2025", note: "" },
+    { task: "Complete Marcus Aurelius milestone fundraising ($472K remaining)", category: "Fundraising", est: "Q1-Q2 2026", note: "" },
+    { task: "Secure funding for Paine milestone ($1.14M required)", category: "Fundraising", est: "Q1-Q2 2026", note: "" }
+];
 
-        const phase1Dependencies = [
-            { task: "Secure MME approval of Phase 1 two-entity governance structure", category: "Critical Gate", est: "Q1-Q2 2026", note: "Dependency: Working demonstrations, clarified phasing" },
-            { task: "Establish 'sufficiently decentralized' argument", category: "Regulatory", est: "Q1-Q2 2026", note: "Dependency: Utility token classification memo" },
-            { task: "Prove STORE token utility with live protocol evidence", category: "Regulatory", est: "Q1-Q2 2026", note: "Evidence: Live protocol automatic fee deduction. Proven decentralization, not theoretical." },
-            { task: "Complete Marcus Aurelius milestone and secure Paine funding", category: "Fundraising", est: "Q1-Q2 2026", note: "$472K + $1.14M required" }
-        ];
+const phase1Dependencies = [
+    { task: "Secure MME approval of Phase 1 two-entity governance structure", category: "Critical Gate", est: "Q1-Q2 2026", note: "Dependency: Working demonstrations, clarified phasing" },
+    { task: "Establish 'sufficiently decentralized' argument", category: "Regulatory", est: "Q1-Q2 2026", note: "Dependency: Utility token classification memo" },
+    { task: "Prove STORE token utility with live protocol evidence", category: "Regulatory", est: "Q1-Q2 2026", note: "Evidence: Live protocol automatic fee deduction. Proven decentralization, not theoretical." },
+    { task: "Complete Marcus Aurelius milestone and secure Paine funding", category: "Fundraising", est: "Q1-Q2 2026", note: "$472K + $1.14M required" }
+];
 
-        const priority1 = [
-            { task: "Provide MME with First Governance operational history", category: "Documentation", est: "Q1-Q2 2026", note: "Proven decentralization, not theoretical - 8 years of real economic decisions under democratic governance" },
-            { task: "Provide complete transaction evidence", category: "Documentation", est: "Q1-Q2 2026", note: "" },
-            { task: "Document that Switzerland launches under existing First Governance", category: "Documentation", est: "Q1-Q2 2026", note: "" },
-            { task: "Document Constitutional AI framework", category: "Documentation", est: "Q1-Q2 2026", note: "" },
-            { task: "Provide CLEAR lifecycle documentation", category: "Documentation", est: "Q1-Q2 2026", note: "" },
-            { task: "Complete founding elections for STORE Association Stewards", category: "Elections", est: "Jan-Mar 2026", note: "" },
-            { task: "Launch STORE Account public financials portal", category: "Transparency", est: "Q1-Q2 2026", note: "" },
-            { task: "Complete Second Treasury + Monetary System Integration", category: "Constitutional AI + Monetary Infrastructure", est: "Q1-Q2 2026 (racing for Q1, may need Q2)", note: "Currently 40% complete. Dependencies: Payment infrastructure + Sub-economies operational by February. March 2026: Sub-economies connect into Second Treasury." },
-            { task: "Document economic model", category: "Documentation", est: "Q1-Q2 2026", note: "" },
-            { task: "Provide technical decentralization proof", category: "Documentation", est: "Q1-Q2 2026", note: "Proven decentralization, not theoretical - operational infrastructure with 8 years of validated uptime" }
-        ];
+const priority1 = [
+    { task: "Provide MME with First Governance operational history", category: "Documentation", est: "Q1-Q2 2026", note: "Proven decentralization, not theoretical - 8 years of real economic decisions under democratic governance" },
+    { task: "Provide complete transaction evidence", category: "Documentation", est: "Q1-Q2 2026", note: "" },
+    { task: "Document that Switzerland launches under existing First Governance", category: "Documentation", est: "Q1-Q2 2026", note: "" },
+    { task: "Document Constitutional AI framework", category: "Documentation", est: "Q1-Q2 2026", note: "" },
+    { task: "Provide CLEAR lifecycle documentation", category: "Documentation", est: "Q1-Q2 2026", note: "" },
+    { task: "Complete founding elections for STORE Association Stewards", category: "Elections", est: "Jan-Mar 2026", note: "" },
+    { task: "Launch STORE Account public financials portal", category: "Transparency", est: "Q1-Q2 2026", note: "" },
+    { task: "Complete Second Treasury + Monetary System Integration", category: "Constitutional AI + Monetary Infrastructure", est: "Q1-Q2 2026 (racing for Q1, may need Q2)", note: "Currently 40% complete. Dependencies: Payment infrastructure + Sub-economies operational by February. March 2026: Sub-economies connect into Second Treasury." },
+    { task: "Document economic model", category: "Documentation", est: "Q1-Q2 2026", note: "" },
+    { task: "Provide technical decentralization proof", category: "Documentation", est: "Q1-Q2 2026", note: "Proven decentralization, not theoretical - operational infrastructure with 8 years of validated uptime" }
+];
 
-        const priority2 = [
-            { task: "Document transition mechanism from Phase 1 to Phase 2", category: "Phase 2 Transition Planning", est: "Q2-Q3 2026", note: "" },
-            { task: "Conduct token classification assessment before Yield Function", category: "Token Classification & Features", est: "Q2-Q3 2026", note: "" },
-            { task: "Clarify staking requirements for governance roles", category: "Token Classification & Features", est: "Q2-Q3 2026", note: "" }
-        ];
+const priority2 = [
+    { task: "Document transition mechanism from Phase 1 to Phase 2", category: "Phase 2 Transition Planning", est: "Q2-Q3 2026", note: "" },
+    { task: "Conduct token classification assessment before Yield Function", category: "Token Classification & Features", est: "Q2-Q3 2026", note: "" },
+    { task: "Clarify staking requirements for governance roles", category: "Token Classification & Features", est: "Q2-Q3 2026", note: "" }
+];
 
-        const priority3 = [
-            { task: "Transition from First Governance to Second Governance", category: "Governance Transition - Phase 2", est: "Q3-Q4 2026", note: "" },
-            { task: "Separate Treasury Branch from Association", category: "Treasury Branch - Phase 2", est: "Q3-Q4 2026", note: "" },
-            { task: "Establish independent Security Branch", category: "Security Branch - Phase 2", est: "Q3-Q4 2026", note: "" }
-        ];
+const priority3 = [
+    { task: "Transition from First Governance to Second Governance", category: "Governance Transition - Phase 2", est: "Q3-Q4 2026", note: "" },
+    { task: "Separate Treasury Branch from Association", category: "Treasury Branch - Phase 2", est: "Q3-Q4 2026", note: "" },
+    { task: "Establish independent Security Branch", category: "Security Branch - Phase 2", est: "Q3-Q4 2026", note: "" }
+];
 
-        // Populate tables
-        function populateTable(tableId, data, timeframeKey = 'timeframe') {
-            const tbody = document.getElementById(tableId);
-            data.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${item.task}</td>
-                    <td class="category-cell">${item.category}</td>
-                    <td class="timeframe-cell">${item[timeframeKey]}</td>
-                `;
-                tbody.appendChild(tr);
-                
-                if (item.note) {
-                    const noteRow = document.createElement('tr');
-                    noteRow.className = 'note-row';
-                    noteRow.innerHTML = `
-                        <td colspan="3" class="note-cell">Note: ${item.note}</td>
-                    `;
-                    tbody.appendChild(noteRow);
-                }
-            });
-        }
-
-        // Populate all tables
-        populateTable('completed-table-body', recentlyCompleted, 'timeframe');
-        populateTable('progress-table-body', inProgress, 'est');
-        populateTable('dependencies-table-body', phase1Dependencies, 'est');
-        populateTable('priority1-table-body', priority1, 'est');
-        populateTable('phase2prep-table-body', priority2, 'est');
-        populateTable('phase2expansion-table-body', priority3, 'est');
-
-        // Update counts
-        document.getElementById('phase2prep-count').textContent = priority2.length;
-        document.getElementById('phase2expansion-count').textContent = priority3.length;
-        document.getElementById('launch-procedures-count').textContent = inProgress.length + phase1Dependencies.length + priority1.length;
-
-        // Collapsible functionality
-        function toggleCollapse(id) {
-            const content = document.getElementById(id + '-content');
-            const chevron = document.getElementById(id + '-chevron');
-            
-            if (content.classList.contains('open')) {
-                content.classList.remove('open');
-                chevron.classList.remove('open');
-            } else {
-                content.classList.add('open');
-                chevron.classList.add('open');
-            }
-            function sendIframeHeight() {
-        // Mendapatkan tinggi scroll dari seluruh dokumen body (paling akurat untuk konten penuh)
-        const height = document.body.scrollHeight;
-        
-        // Mengirim tinggi ke halaman induk. 
-        // 'myIframeId' harus sesuai dengan ID yang akan Anda berikan di halaman induk.
-        // Ganti '*' dengan origin spesifik halaman induk Anda untuk keamanan yang lebih baik.
+function sendIframeHeight() {
+    setTimeout(() => {
+        const height = document.documentElement.scrollHeight;
         window.parent.postMessage({ height: height, frameId: 'governRoadmapIframe' }, '*'); 
-    }
+    }, 100);
+}
 
-    // Panggil fungsi saat dokumen dimuat dan setiap kali window diubah ukurannya
-    window.onload = sendIframeHeight;
-    window.onresize = sendIframeHeight;
-    
-    // Opsional: Untuk konten yang dimuat secara dinamis, panggil lagi setelah konten selesai dimuat
-    // Misalnya, jika ada gambar besar yang butuh waktu.
-    // setTimeout(sendIframeHeight, 500);
+function populateTable(tableId, data, timeframeKey = 'timeframe') {
+    const tbody = document.getElementById(tableId);
+    data.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${item.task}</td>
+            <td class="category-cell">${item.category}</td>
+            <td class="timeframe-cell">${item[timeframeKey]}</td>
+        `;
+        tbody.appendChild(tr);
+        
+        if (item.note) {
+            const noteRow = document.createElement('tr');
+            noteRow.className = 'note-row';
+            noteRow.innerHTML = `
+                <td colspan="3" class="note-cell">Note: ${item.note}</td>
+            `;
+            tbody.appendChild(noteRow);
         }
+    });
+}
+
+populateTable('completed-table-body', recentlyCompleted, 'timeframe');
+populateTable('progress-table-body', inProgress, 'est');
+populateTable('dependencies-table-body', phase1Dependencies, 'est');
+populateTable('priority1-table-body', priority1, 'est');
+populateTable('phase2prep-table-body', priority2, 'est');
+populateTable('phase2expansion-table-body', priority3, 'est');
+
+document.getElementById('phase2prep-count').textContent = priority2.length;
+document.getElementById('phase2expansion-count').textContent = priority3.length;
+document.getElementById('launch-procedures-count').textContent = inProgress.length + phase1Dependencies.length + priority1.length;
+
+function toggleCollapse(id) {
+    const content = document.getElementById(id + '-content');
+    const chevron = document.getElementById(id + '-chevron');
+    
+    if (content.classList.contains('open')) {
+        content.classList.remove('open');
+        chevron.classList.remove('open');
+    } else {
+        content.classList.add('open');
+        chevron.classList.add('open');
+    }
+    sendIframeHeight(); 
+}
+
+window.onload = function() {
+    sendIframeHeight();
+    window.addEventListener('resize', sendIframeHeight); 
+};
     </script>
 </body>
 </html>
