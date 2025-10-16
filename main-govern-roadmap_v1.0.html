@@ -18,6 +18,7 @@
             color: white;
             min-height: 100vh;
             overflow-x: hidden;
+            overflow-y: visible;
             padding: 0;
             margin: 0;
         }
@@ -1750,5 +1751,22 @@
             }
         }
     </script>
+    <script>
+    // Auto-resize script untuk iframe
+    function sendHeight() {
+        const height = document.documentElement.scrollHeight;
+        window.parent.postMessage({
+            type: 'iframeHeight',
+            height: height
+        }, '*');
+    }
+
+    // Kirim height saat load dan saat resize
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    
+    // Kirim height setelah semua animasi selesai
+    setTimeout(sendHeight, 3000);
+</script>
 </body>
 </html>
