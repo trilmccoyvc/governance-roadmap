@@ -1747,6 +1747,23 @@
                 content.classList.add('open');
                 chevron.classList.add('open');
             }
+            function sendIframeHeight() {
+        // Mendapatkan tinggi scroll dari seluruh dokumen body (paling akurat untuk konten penuh)
+        const height = document.body.scrollHeight;
+        
+        // Mengirim tinggi ke halaman induk. 
+        // 'myIframeId' harus sesuai dengan ID yang akan Anda berikan di halaman induk.
+        // Ganti '*' dengan origin spesifik halaman induk Anda untuk keamanan yang lebih baik.
+        window.parent.postMessage({ height: height, frameId: 'governRoadmapIframe' }, '*'); 
+    }
+
+    // Panggil fungsi saat dokumen dimuat dan setiap kali window diubah ukurannya
+    window.onload = sendIframeHeight;
+    window.onresize = sendIframeHeight;
+    
+    // Opsional: Untuk konten yang dimuat secara dinamis, panggil lagi setelah konten selesai dimuat
+    // Misalnya, jika ada gambar besar yang butuh waktu.
+    // setTimeout(sendIframeHeight, 500);
         }
     </script>
 </body>
