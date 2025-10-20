@@ -26,10 +26,6 @@
             max-height: 0;
         }
 
-        .collapsible-content.expanded {
-            max-height: 15000px; /* A large value to allow content to expand */
-        }
-
         /* Styles for chevron icons on trigger buttons */
         .collapsible-trigger .chevron-up {
             display: none;
@@ -1977,7 +1973,6 @@ function toggleSection(sectionId) {
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Find all buttons that trigger a collapsible section
         const triggers = document.querySelectorAll('.collapsible-trigger');
 
         triggers.forEach(trigger => {
@@ -1985,19 +1980,25 @@ function toggleSection(sectionId) {
             const content = document.getElementById(contentId);
 
             if (content) {
-                // Set initial state based on the trigger's class, ensuring consistency.
-                // This explicitly hides or shows content on page load.
                 if (trigger.classList.contains('expanded')) {
                     content.classList.add('expanded');
+                    content.style.maxHeight = content.scrollHeight + 'px'; 
                 } else {
                     content.classList.remove('expanded');
+                    content.style.maxHeight = '0px'; // Pastikan mulai dari 0
                 }
 
                 trigger.addEventListener('click', (event) => {
                     event.stopPropagation();
-                    // Toggle the 'expanded' class on both the trigger and content
                     trigger.classList.toggle('expanded');
-                    content.classList.toggle('expanded');
+                    
+                    if (content.classList.contains('expanded')) {
+                        content.style.maxHeight = '0px';
+                        content.classList.remove('expanded');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.classList.add('expanded');
+                    }
                 });
             }
         });
