@@ -25,6 +25,9 @@
             transition: max-height 0.5s ease-out;
             max-height: 0;
         }
+        .collapsible-content.expanded {
+    max-height: 15000px;
+        }
 
         /* Styles for chevron icons on trigger buttons */
         .collapsible-trigger .chevron-up {
@@ -1980,25 +1983,20 @@ function toggleSection(sectionId) {
             const content = document.getElementById(contentId);
 
             if (content) {
+            
                 if (trigger.classList.contains('expanded')) {
                     content.classList.add('expanded');
-                    content.style.maxHeight = content.scrollHeight + 'px'; 
                 } else {
                     content.classList.remove('expanded');
-                    content.style.maxHeight = '0px'; // Pastikan mulai dari 0
                 }
 
                 trigger.addEventListener('click', (event) => {
                     event.stopPropagation();
                     trigger.classList.toggle('expanded');
-                    
-                    if (content.classList.contains('expanded')) {
-                        content.style.maxHeight = '0px';
-                        content.classList.remove('expanded');
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                        content.classList.add('expanded');
-                    }
+                    content.classList.toggle('expanded');
+                    content.addEventListener('transitionend', () => {
+                        postHeight(); 
+                    }, { once: true });
                 });
             }
         });
@@ -2015,11 +2013,6 @@ function toggleSection(sectionId) {
 
     window.addEventListener('load', postHeight);
 
-    const resizeObserver = new ResizeObserver(() => {
-        postHeight();
-    });
-
-    resizeObserver.observe(document.body);
 </script>
 
 </body>
