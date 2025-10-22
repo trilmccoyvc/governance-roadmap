@@ -109,22 +109,22 @@
 
         <!-- Quick Stats -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 sm:mb-12 text-center">
-          <div class="bg-white/10 backdrop-blur-sm rounded-box p-4 border border-white/20">
-            <div class="text-2xl sm:text-3xl font-bold mb-1" style="color: #4ade80;">8 Years</div>
-            <div class="text-xs" style="color: #aaa;">Infrastructure Operational</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-box p-4 border border-white/20">
-            <div class="text-2xl sm:text-3xl font-bold mb-1" style="color: #4ade80;">$28.03M</div>
-            <div class="text-xs" style="color: #aaa;">Democratically Governed</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-box p-4 border border-white/20">
-            <div class="text-2xl sm:text-3xl font-bold mb-1" style="color: #20b2aa;">4.44%</div>
-            <div class="text-xs" style="color: #aaa;">APY Potential</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur-sm rounded-box p-4 border border-white/20">
-            <div class="text-2xl sm:text-3xl font-bold mb-1" style="color: #20b2aa;">ETA Q1-Q2 2026</div>
-            <div class="text-xs" style="color: #aaa;">Switzerland Launch</div>
-          </div>
+  <div class="bg-white/10 backdrop-blur-sm rounded-box p-4 border border-white/20 flex flex-col items-center justify-center text-center min-h-[120px]">
+    <div class="text-2xl sm:text-3xl font-bold mb-1" style="color: #4ade80;">8 Years</div>
+    <div class="text-xs" style="color: #aaa;">Infrastructure Operational</div>
+  </div>
+  <div class="bg-white/10 backdrop-blur-sm rounded-box p-4 border border-white/20 flex flex-col items-center justify-center text-center min-h-[120px]">
+    <div class="text-2xl sm:text-3xl font-bold mb-1" style="color: #4ade80;">$28.03M</div>
+    <div class="text-xs" style="color: #aaa;">Democratically Governed</div>
+  </div>
+  <div class="bg-white/10 backdrop-blur-sm rounded-box p-4 border border-white/20 flex flex-col items-center justify-center text-center min-h-[120px]">
+    <div class="text-2xl sm:text-3xl font-bold mb-1" style="color: #20b2aa;">4.44%</div>
+    <div class="text-xs" style="color: #aaa;">APY Potential</div>
+  </div>
+  <div class="bg-white/10 backdrop-blur-sm rounded-box p-4 border border-white/20 flex flex-col items-center justify-center text-center min-h-[120px]">
+    <div class="text-2xl sm:text-3xl font-bold mb-1" style="color: #20b2aa;">ETA Q1-Q2 2026</div>
+    <div class="text-xs" style="color: #aaa;">Switzerland Launch</div>
+  </div>
         </div>
 
         <!-- What is STORE -->
@@ -389,18 +389,24 @@
 
         <!-- Navigation: Choose Your Reading Path -->
         <div class="mb-8 sm:mb-12 text-center">
-          <p class="text-lg mb-4 text-white font-semibold">Choose Your Reading Path:</p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button onclick="document.getElementById('critical-path-section').scrollIntoView({behavior: 'smooth'})" class="px-6 py-3 rounded-box font-semibold text-white transition-all shadow-lg hover:shadow-xl w-full sm:w-auto" style="background: linear-gradient(to right, #20b2aa, #00528a);">
-              Quick Update (2 min)
-              <div class="text-xs mt-1 font-normal">Skip to launch milestones →</div>
-            </button>
-            <button onclick="document.getElementById('ai-infrastructure-section').scrollIntoView({behavior: 'smooth'})" class="px-6 py-3 rounded-box font-semibold text-white transition-all shadow-lg hover:shadow-xl border w-full sm:w-auto" style="border-color: #20b2aa; background: rgba(32, 178, 170, 0.1);">
-              Full Story (10 min)
-              <div class="text-xs mt-1 font-normal">Read complete context ↓</div>
-            </button>
-          </div>
-        </div>
+  <p class="text-lg mb-4 text-white font-semibold">Choose Your Reading Path:</p>
+  <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full">
+    <button onclick="document.getElementById('critical-path-section').scrollIntoView({behavior: 'smooth'})" 
+      class="px-6 py-3 rounded-box font-semibold text-white transition-all shadow-lg hover:shadow-xl w-full flex-1" 
+      style="background: linear-gradient(to right, #20b2aa, #00528a);">
+      Quick Update (2 min)
+      <div class="text-xs mt-1 font-normal">Skip to launch milestones →</div>
+    </button>
+
+    <button onclick="document.getElementById('ai-infrastructure-section').scrollIntoView({behavior: 'smooth'})" 
+      class="px-6 py-3 rounded-box font-semibold text-white transition-all shadow-lg hover:shadow-xl border w-full flex-1" 
+      style="border-color: #20b2aa; background: rgba(32, 178, 170, 0.1);">
+      Full Story (10 min)
+      <div class="text-xs mt-1 font-normal">Read complete context ↓</div>
+    </button>
+  </div>
+</div>
+
 
         <!-- Technical Achievements - AI-Governed Infrastructure -->
         <div id="ai-infrastructure-section" class="mb-8 sm:mb-12 bg-gradient-to-r from-cyan-900/30 to-blue-900/30 rounded-box p-6 sm:p-8 border border-cyan-400/60">
@@ -1942,6 +1948,7 @@
 
 </body>
 </html>
+
 
 
 
