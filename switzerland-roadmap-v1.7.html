@@ -2255,34 +2255,7 @@ The next 12 months determine if we get that chance.
 </div>
 </div>
     
-        <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Find all buttons that trigger a collapsible section
-        const triggers = document.querySelectorAll('.collapsible-trigger');
-
-        triggers.forEach(trigger => {
-            const contentId = trigger.getAttribute('data-toggle');
-            const content = document.getElementById(contentId);
-
-            if (content) {
-                // Set initial state based on the trigger's class
-                if (trigger.classList.contains('expanded')) {
-                    content.classList.add('expanded');
-                } else {
-                    content.classList.remove('expanded');
-                }
-
-                trigger.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    // Toggle the 'expanded' class on both the trigger and content
-                    trigger.classList.toggle('expanded');
-                    content.classList.toggle('expanded');
-                });
-            }
-        });
-    });
-</script>
-<script>
+       <script>
     const postHeight = () => {
         const contentHeight = document.documentElement.scrollHeight;
         parent.postMessage({
@@ -2291,14 +2264,41 @@ The next 12 months determine if we get that chance.
         }, '*');
     };
 
-    window.addEventListener('load', postHeight);
+    document.addEventListener('DOMContentLoaded', function () {
+        const triggers = document.querySelectorAll('.collapsible-trigger');
 
-    const resizeObserver = new ResizeObserver(() => {
-        postHeight();
+        triggers.forEach(trigger => {
+            const contentId = trigger.getAttribute('data-toggle');
+            const content = document.getElementById(contentId);
+
+            if (content) {
+
+                if (trigger.classList.contains('expanded')) {
+                    content.classList.add('expanded');
+                } else {
+                    content.classList.remove('expanded');
+                }
+
+                // Handler klik
+                trigger.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    trigger.classList.toggle('expanded');
+                    content.classList.toggle('expanded');
+
+                    postHeight();
+                });
+
+                content.addEventListener('transitionend', (event) => {
+                    if (event.propertyName === 'height' || event.propertyName === 'max-height') {
+                        postHeight();
+                    }
+                });
+            }
+        });
+        window.addEventListener('load', postHeight);
     });
-
-    resizeObserver.observe(document.body);
 </script>
 
 </body>
+
 </html>
