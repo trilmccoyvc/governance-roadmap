@@ -2545,35 +2545,25 @@ The next 12 months determine if we get that chance.
     });
 </script>
 <script>
-  // Auto-open specific collapsible on page load
+  // Auto-open tier1Content on page load
   window.addEventListener('load', function() {
-    // Small delay to ensure all scripts are loaded
     setTimeout(function() {
       const tier1Button = document.querySelector('[data-toggle="tier1Content"]');
-      const tier1Content = document.getElementById('tier1Content');
       
-      if (tier1Button && tier1Content) {
-        // Add active class to button
-        tier1Button.classList.add('active');
+      if (tier1Button) {
+        // Check if not already open
+        const tier1Content = document.getElementById('tier1Content');
+        const isOpen = tier1Content && (
+          tier1Content.style.display === 'block' || 
+          tier1Button.classList.contains('active')
+        );
         
-        // Show content with multiple fallback methods
-        tier1Content.style.display = 'block';
-        tier1Content.style.maxHeight = tier1Content.scrollHeight + 'px';
-        tier1Content.classList.add('active');
-        tier1Content.classList.remove('hidden');
-        
-        // Update chevron icons
-        const chevronDown = tier1Button.querySelector('.chevron-down');
-        const chevronUp = tier1Button.querySelector('.chevron-up');
-        
-        if (chevronDown) chevronDown.style.display = 'none';
-        if (chevronUp) chevronUp.style.display = 'block';
-        
-        console.log('Tier1 collapsible opened on page load');
-      } else {
-        console.log('Tier1 elements not found');
+        // Only click if not already open
+        if (!isOpen) {
+          tier1Button.click();
+        }
       }
-    }, 100);
+    }, 300);
   });
 </script>
 
@@ -2581,5 +2571,6 @@ The next 12 months determine if we get that chance.
 
 
 </html>
+
 
 
