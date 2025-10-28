@@ -68,42 +68,50 @@
         </div>
         
         <!-- The Window Is Closing -->
-        <div class="mb-8 sm:mb-8">
-    <div class="w-full flex items-center justify-between p-4 bg-gradient-to-r from-red-900/50 to-orange-900/40 rounded-box border border-red-500/30">
-        <div class="flex items-start sm:items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-1 sm:mt-0"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-            <div class="text-left">
+        <div class="mb-8 sm:mb-12">
+          <button data-toggle="tier1Content" class="collapsible-trigger active w-full flex items-center justify-between p-4 bg-gradient-to-r from-red-900/50 to-orange-900/40 rounded-box border border-red-500/30 hover:border-red-500/50 transition-colors">
+            <div class="flex items-start sm:items-center gap-3 mb-2 sm:mb-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-1 sm:mt-0"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+              <div class="text-left">
                 <h2 class="text-2xl sm:text-2xl font-bold text-white">The Window Is Closing</h2>
-                <p class="text-xs sm:text-sm mt-1" style="color: #aaa;">Why the next 8 years determine AI's future</p>
-            </div>
-        </div>
-        </div>
-    
-    <div class="content-body"> <div class="mb-8 mt-4 sm:mb-12 rounded-box p-6 sm:p-8 border" style="background: linear-gradient(to right, rgba(185, 28, 28, 0.3), rgba(153, 27, 27, 0.3)); border-color: rgba(220, 38, 38, 0.4);">
-            <p class="text-lg sm:text-base leading-normal mb-4 font-semibold" style="color: #ff3d3d;">
-                Big Tech is building AI infrastructure with zero democratic oversight. Once they control it, game over.
-            </p>
-            <p class="text-base leading-relaxed mb-2" style="color: white;">
-                Amazon, Google, and Microsoft control 70% of cloud computing. They make all decisions about pricing, policies, and AI behavior. Users pay bills forever, never own anything, never vote on anything.
-            </p>
+              <p class="text-xs sm:text-sm mt-1" style="color: #aaa;">Why the next 8 years determine AI's future</p>
+              </div>
+              </div>
+            <span class="chevron-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+            <span class="chevron-up"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></span>
+          </button>
+          
+          <div id="tier1Content" class="collapsible-content" style="display: block;">
+            <div class="mb-8 mt-4 sm:mb-12 rounded-box p-6 sm:p-8 border" style="background: linear-gradient(to right, rgba(185, 28, 28, 0.3), rgba(153, 27, 27, 0.3)); border-color: rgba(220, 38, 38, 0.4);">
+          <p class="text-lg sm:text-base leading-normal mb-4 font-semibold" style="color: #ff3d3d;">
+            Big Tech is building AI infrastructure with zero democratic oversight. Once they control it, game over.
+          </p>
+          <p class="text-base leading-relaxed mb-2" style="color: white;">
+            Amazon, Google, and Microsoft control 70% of cloud computing. They make all decisions about pricing, policies, and AI behavior. Users pay bills forever, never own anything, never vote on anything.
             <p class="text-base leading-relaxed mb-" style="color: white;">
-                Now they're racing to deploy AI at scale on that same centralized infrastructure. We estimate approximately 8 years to prove an alternative model works before the window closes permanently.
+            Now they're racing to deploy AI at scale on that same centralized infrastructure. We estimate approximately 8 years to prove an alternative model works before the window closes permanently.
+          </p>
+          
+          <div class="mt-4 bg-red-900/20 rounded-box p-4 sm:p-6 border-l-4 border-red-500">
+            <p class="text-l font-semibold mb-2" style="color: #ff3d3d;">The Stakes:</p>
+            <p class="text-sm mb-2" style="color: white;">
+              If we don't establish democratic AI governance precedent NOW—with operational proof, legal frameworks, and constitutional mathematics—Big Tech will set the standard. And their standard is: shareholders vote, users obey.
             </p>
-            
-            <div class="mt-4 bg-red-900/20 rounded-box p-4 sm:p-6 border-l-4 border-red-500">
-                <p class="text-l font-semibold mb-2" style="color: #ff3d3d;">The Stakes:</p>
-                <p class="text-sm mb-2" style="color: white;">
-                    If we don't establish democratic AI governance precedent NOW—with operational proof, legal frameworks, and constitutional mathematics—Big Tech will set the standard. And their standard is: shareholders vote, users obey.
-                </p>
-                <p class="text-sm mb-2" style="color: #ddd;">
-                </p>
-            </div>
-            <p class="text-lg sm:text-base leading-relaxed mb-3 mt-4 font-semibold" style="color: #20b2aa;">
-                Switzerland launch isn't just a token release. It's humanity's chance to prove democratic AI governance works at scale, backed by 8 years of proven infrastructure.
-            </p>
+            <p class="text-sm mb-2" style="color: #ddd;">
+          </div>
+          <p class="text-lg sm:text-base leading-relaxed mb-3 mt-4 font-semibold" style="color: #20b2aa;">
+            Switzerland launch isn't just a token release. It's humanity's chance to prove democratic AI governance works at scale, backed by 8 years of proven infrastructure.
+          </p>
         </div>
-    </div>
-</div>
+        </div>
+        
+        <!-- TLDR Banner -->
+        <div class="mb-8 mt-6 sm:mb-8 bg-gradient-to-r from-blue-900/40 to-cyan-900/40 rounded-box p-6 sm:p-8 border border-cyan-400/30">
+          <div class="text-lg font-bold mb-2 tracking-wide" style="color: #20b2aa;">TL;DR</div>
+          <p class="text-base sm:text-base leading-relaxed text-white">
+            <strong>STORE is user-owned cloud infrastructure</strong> with a proven token economy where users buy STORE tokens and pay cloudspace fees, participating in democratic governance powered by 498 AI endpoints under constitutional control. <strong>8 years live</strong> (2017-2025) with $28M governed democratically and real revenue from infrastructure services, targeting Switzerland launch ETA Q1-Q2 2026 (chosen for legal framework under Swiss law of democratic governance) to prove humanity can govern AI infrastructure before Big Tech locks it down permanently.
+          </p>
+        </div>
         
         <!-- Mission Banner -->
         <div class="mb-8 sm:mb-8 bg-gradient-to-r from-cyan-900/40 to-blue-900/40 rounded-box p-6 sm:p-8 border border-blue-400/60 border-cyan-400/60 shadow-lg">
@@ -2535,6 +2543,20 @@ The next 12 months determine if we get that chance.
         });
         window.addEventListener('load', postHeight);
     });
+</script>
+<script>
+  // Auto-open specific collapsible on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const tier1Button = document.querySelector('[data-toggle="tier1Content"]');
+    const tier1Content = document.getElementById('tier1Content');
+    
+    if (tier1Button && tier1Content) {
+      // Add active class to button
+      tier1Button.classList.add('active');
+      // Show content
+      tier1Content.style.display = 'block';
+    }
+  });
 </script>
 
 </body>
