@@ -2545,32 +2545,40 @@ The next 12 months determine if we get that chance.
     });
 </script>
 <script>
-  // Auto-open tier1Content on page load
-  window.addEventListener('load', function() {
-    setTimeout(function() {
+  // Auto-open tier1Content - ONE TIME ONLY
+  (function() {
+    let attempted = false;
+    
+    function openTier1Panel() {
+      // Prevent multiple attempts
+      if (attempted) return;
+      attempted = true;
+      
       const tier1Button = document.querySelector('[data-toggle="tier1Content"]');
       
       if (tier1Button) {
-        // Check if not already open
-        const tier1Content = document.getElementById('tier1Content');
-        const isOpen = tier1Content && (
-          tier1Content.style.display === 'block' || 
-          tier1Button.classList.contains('active')
-        );
-        
-        // Only click if not already open
-        if (!isOpen) {
-          tier1Button.click();
-        }
+        console.log('Opening tier1Content...');
+        tier1Button.click();
       }
-    }, 300);
-  });
+    }
+
+    // Wait for everything to be ready, then open ONCE
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(openTier1Panel, 300);
+      });
+    } else {
+      // DOM already loaded
+      setTimeout(openTier1Panel, 300);
+    }
+  })();
 </script>
 
 </body>
 
 
 </html>
+
 
 
 
