@@ -1763,18 +1763,12 @@
 
     <!-- JavaScript for tab switching -->
  <script>
-    // Fungsi untuk mengirim tinggi ke Webflow
     function postHeight() {
-        // Reset paksa agar tidak menahan tinggi dari tab sebelumnya
+        // RESET: Paksa browser untuk tidak mempertahankan tinggi lama
         document.body.style.height = 'auto';
-        document.documentElement.style.height = 'auto';
-
-        const height = Math.max(
-            document.body.scrollHeight,
-            document.body.offsetHeight,
-            document.documentElement.offsetHeight,
-            document.documentElement.scrollHeight
-        );
+        
+        // Ambil tinggi konten saat ini secara presisi
+        const height = document.documentElement.offsetHeight;
 
         window.parent.postMessage({
             type: 'iframeHeight',
@@ -1782,7 +1776,6 @@
         }, '*');
     }
 
-    // Fungsi Switch Tab yang sudah terintegrasi
     function switchTab(tabName) {
         // 1. Update UI Tombol
         const buttons = document.querySelectorAll('[id^="tab-"]');
@@ -1795,34 +1788,40 @@
             activeBtn.setAttribute('class', 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap bg-cyan-700/50 text-white');
         }
         
-        // 2. Update Konten
+        // 2. Update Konten & ARIA
         const contents = document.querySelectorAll('.tab-content');
         contents.forEach(content => {
             content.classList.remove('active');
-            content.style.display = 'none'; // Pastikan konten lama benar-benar tersembunyi
+            content.style.display = 'none'; // PASTI: Konten hilang dari kalkulasi tinggi
+            content.setAttribute('aria-hidden', 'true');
         });
         
         const activeContent = document.getElementById('content-' + tabName);
         if (activeContent) {
             activeContent.classList.add('active');
-            activeContent.style.display = 'block'; // Tampilkan konten baru
+            activeContent.style.display = 'block'; // PASTI: Konten masuk ke kalkulasi tinggi
+            activeContent.setAttribute('aria-hidden', 'false');
         }
 
-        // 3. Kirim tinggi baru ke Webflow (dengan delay sedikit agar render selesai)
-        setTimeout(postHeight, 50);
-        setTimeout(postHeight, 300); // Penyesuaian kedua untuk memastikan animasi selesai
+        // 3. Trigger kalkulasi ulang dengan delay untuk memastikan render selesai
+        requestAnimationFrame(() => {
+            postHeight();
+            // Jalankan sekali lagi setelah 200ms jika ada gambar yang memuat
+            setTimeout(postHeight, 200);
+        });
     }
 
-    // Event Listeners
-    document.addEventListener('DOMContentLoaded', function() {
-        switchTab('path'); // Load tab default
-    });
-
+    // Inisialisasi
     window.addEventListener('load', postHeight);
     window.addEventListener('resize', postHeight);
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        switchTab('path');
+    });
 </script>
 </body>
 </html>
+
 
 
 
