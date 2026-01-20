@@ -43,6 +43,14 @@
         .tab-content.active {
             display: block;
         }
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
     </style>
 </head>
 
@@ -79,19 +87,21 @@
         </div>
         
         <!-- Tab Navigation -->
-        <div class="max-w-[960px] mx-auto mb-8">
-            <div class="flex gap-2 p-1 bg-black/30 backdrop-blur-md rounded-2xl w-fit border border-white/5">
-                <button onclick="switchTab('path')" id="tab-path" class="px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap bg-slate-700/50 text-white">
-                    Path to Launch
-                </button>
-                <button onclick="switchTab('story')" id="tab-story" class="px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200">
-                    The Story
-                </button>
-                <button onclick="switchTab('building')" id="tab-building" class="px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200">
-                    What We're Building
-                </button>
-            </div>
+<div class="max-w-[960px] mx-auto mb-8">
+    <div class="overflow-x-auto scrollbar-hide">
+        <div class="flex gap-1 p-1 bg-slate-800/50 rounded-lg w-fit min-w-full">
+            <button onclick="switchTab('path')" id="tab-path" class="px-4 sm:px-6 py-3 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap bg-slate-700/50 text-white flex-shrink-0">
+                Path to Launch
+            </button>
+            <button onclick="switchTab('story')" id="tab-story" class="px-4 sm:px-6 py-3 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200 flex-shrink-0">
+                The Story
+            </button>
+            <button onclick="switchTab('building')" id="tab-building" class="px-4 sm:px-6 py-3 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200 flex-shrink-0">
+                What We're Building
+            </button>
         </div>
+    </div>
+</div>
 
         <!-- Tab Content Container -->
         <div class="max-w-[960px] mx-auto">
@@ -1829,6 +1839,7 @@
 </script>
 </body>
 </html>
+
 
 
 
