@@ -51,21 +51,27 @@
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
+html {
+    scroll-behavior: smooth;
+}
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+}
     </style>
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white min-h-screen">
-  <div id="main-wrapper" style="overflow: hidden; height: fit-content;">  
-    <div class="overflow-y-auto px-4 sm:px-8 py-12">
-        
-        <!-- Header Section -->
-        <div class="max-w-[960px] mx-auto mb-8">
+    
+    <!-- Header Section -->
+    <div class="px-4 sm:px-8 pt-12 pb-6">
+        <div class="max-w-[960px] mx-auto">
             <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
                 <div class="flex items-center gap-3">
-                    <img src="https://cdn.prod.website-files.com/5f48a063be66ba845f0d598c/688242a02e83bccd730a7c79_STORE_White_New_Jul25_High.png" alt="STORE Cloud" class="h-10 sm:h-12 mr-3 w-auto object-contain">
+                    <span class="text-4xl">☁️</span>
                     <div>
                         <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                            Launch Dashboard
+                            STORE Launch Dashboard
                         </h1>
                         <p class="text-base sm:text-lg text-gray-300 font-light mt-1">
                             AI Infrastructure That Humanity Can Govern
@@ -81,29 +87,33 @@
             </div>
             
             <!-- Progress Bar -->
-            <div class="h-2 bg-slate-400/50 rounded-full overflow-hidden mb-2">
+            <div class="h-2 bg-slate-800/50 rounded-full overflow-hidden mb-2">
                 <div class="h-full bg-gradient-to-r from-emerald-600 to-emerald-400" style="width: 65%"></div>
             </div>
         </div>
-        
-        <!-- Tab Navigation -->
-<div class="max-w-[960px] mx-auto mb-8">
-    <div class="overflow-x-auto scrollbar-hide">
-        <div class="flex gap-1 p-1 bg-slate-800/50 rounded-lg w-fit min-w-full">
-            <button onclick="switchTab('path')" id="tab-path" class="px-4 sm:px-6 py-3 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap bg-slate-700/50 text-white flex-shrink-0">
-                Path to Launch
-            </button>
-            <button onclick="switchTab('story')" id="tab-story" class="px-4 sm:px-6 py-3 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200 flex-shrink-0">
-                The Story
-            </button>
-            <button onclick="switchTab('building')" id="tab-building" class="px-4 sm:px-6 py-3 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200 flex-shrink-0">
-                What We're Building
-            </button>
+    </div>
+    
+    <!-- Tab Navigation - STICKY -->
+    <div class="sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-[960px] mx-auto px-4 sm:px-8 py-4">
+            <div class="overflow-x-auto pb-2">
+                <div class="flex gap-1 p-1 bg-slate-800/50 rounded-lg w-fit">
+                    <button onclick="switchTab('path')" id="tab-path" class="px-4 sm:px-6 py-3 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap bg-slate-700/50 text-white flex-shrink-0">
+                        Path to Launch
+                    </button>
+                    <button onclick="switchTab('story')" id="tab-story" class="px-4 sm:px-6 py-3 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200 flex-shrink-0">
+                        The Story
+                    </button>
+                    <button onclick="switchTab('building')" id="tab-building" class="px-4 sm:px-6 py-3 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200 flex-shrink-0">
+                        What We're Building
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-        <!-- Tab Content Container -->
+    <!-- Tab Content Container -->
+    <div class="px-4 sm:px-8 py-8">
         <div class="max-w-[960px] mx-auto">
             
             <!-- ========================================== -->
@@ -1771,16 +1781,10 @@
         </div>
     </div>
 
-    <!-- JavaScript for tab switching -->
  <script>
-    // 1. Dapatkan elemen wrapper utama
     const wrapper = document.getElementById('main-wrapper');
-
-    // 2. Fungsi untuk mengirim tinggi ke Webflow
     function sendHeight() {
         if (!wrapper) return;
-        
-        // Ambil tinggi presisi dari wrapper, bukan body
         const height = wrapper.getBoundingClientRect().height;
 
         window.parent.postMessage({
@@ -1788,24 +1792,16 @@
             height: height
         }, '*');
     }
-
-    // 3. ResizeObserver: Solusi Paling Modern & Pasti
-    // Ini akan otomatis mendeteksi jika tinggi wrapper berubah (misal: ganti tab)
-    // dan langsung mengirim sinyal ke Webflow tanpa perlu setTimeout.
     const resizeObserver = new ResizeObserver((entries) => {
         for (let entry of entries) {
             sendHeight();
         }
     });
-
-    // Mulai memantau wrapper
     if (wrapper) {
         resizeObserver.observe(wrapper);
     }
 
-    // 4. Fungsi Tab Switching (Bersih & Sederhana)
     function switchTab(tabName) {
-        // Update Style Tombol
         const buttons = document.querySelectorAll('[id^="tab-"]');
         buttons.forEach(btn => {
             btn.className = 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200';
@@ -1816,34 +1812,29 @@
             activeBtn.className = 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap bg-cyan-700/50 text-white';
         }
         
-        // Update Konten (Gunakan display none agar wrapper mengecil)
         const contents = document.querySelectorAll('.tab-content');
         contents.forEach(content => {
-            content.style.display = 'none'; // WAJIB: Sembunyikan total
+            content.style.display = 'none';
         });
         
         const activeContent = document.getElementById('content-' + tabName);
         if (activeContent) {
-            activeContent.style.display = 'block'; // WAJIB: Tampilkan target
+            activeContent.style.display = 'block';
         }
-        
-        // ResizeObserver akan otomatis menangkap perubahan ini
     }
-
-    // Inisialisasi awal
     document.addEventListener('DOMContentLoaded', () => {
         switchTab('path');
-        // Kirim tinggi awal
         setTimeout(sendHeight, 100);
     });
+window.addEventListener('scroll', function() {
+    const stickyNav = document.getElementById('stickyNav');
+    
+    if (window.scrollY > 80) {
+        stickyNav.classList.add('shadow-2xl', 'border-b', 'border-slate-700/50');
+    } else {
+        stickyNav.classList.remove('shadow-2xl', 'border-b', 'border-slate-700/50');
+    }
+});
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
