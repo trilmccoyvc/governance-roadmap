@@ -1764,12 +1764,13 @@
     <!-- JavaScript for tab switching -->
  <script>
     function postHeight() {
-        // RESET: Paksa browser untuk tidak mempertahankan tinggi lama
+        // Reset sementara agar browser menghitung ulang dari nol
         document.body.style.height = 'auto';
         
-        // Ambil tinggi konten saat ini secara presisi
-        const height = document.documentElement.offsetHeight;
+        // Ambil tinggi saat ini
+        const height = document.body.scrollHeight;
 
+        // Kirim ke Webflow
         window.parent.postMessage({
             type: 'iframeHeight',
             height: height
@@ -1777,41 +1778,34 @@
     }
 
     function switchTab(tabName) {
-        // 1. Update UI Tombol
+        // 1. Reset semua tombol ke style default
         const buttons = document.querySelectorAll('[id^="tab-"]');
         buttons.forEach(btn => {
             btn.setAttribute('class', 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200');
         });
         
+        // 2. Set tombol aktif
         const activeBtn = document.getElementById('tab-' + tabName);
         if (activeBtn) {
             activeBtn.setAttribute('class', 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap bg-cyan-700/50 text-white');
         }
         
-        // 2. Update Konten & ARIA
+        // 3. Kontrol visibilitas konten (Menggunakan class .active bawaan Anda)
         const contents = document.querySelectorAll('.tab-content');
         contents.forEach(content => {
             content.classList.remove('active');
-            content.style.display = 'none'; // PASTI: Konten hilang dari kalkulasi tinggi
-            content.setAttribute('aria-hidden', 'true');
         });
         
-        const activeContent = document.getElementById('content-' + tabName);
-        if (activeContent) {
-            activeContent.classList.add('active');
-            activeContent.style.display = 'block'; // PASTI: Konten masuk ke kalkulasi tinggi
-            activeContent.setAttribute('aria-hidden', 'false');
+        const targetContent = document.getElementById('content-' + tabName);
+        if (targetContent) {
+            targetContent.classList.add('active');
         }
 
-        // 3. Trigger kalkulasi ulang dengan delay untuk memastikan render selesai
-        requestAnimationFrame(() => {
-            postHeight();
-            // Jalankan sekali lagi setelah 200ms jika ada gambar yang memuat
-            setTimeout(postHeight, 200);
-        });
+        // 4. TRIGGER TINGGI: Jalankan setelah sedikit delay agar DOM selesai update
+        setTimeout(postHeight, 50);
     }
 
-    // Inisialisasi
+    // Listener otomatis
     window.addEventListener('load', postHeight);
     window.addEventListener('resize', postHeight);
     
@@ -1821,6 +1815,7 @@
 </script>
 </body>
 </html>
+
 
 
 
