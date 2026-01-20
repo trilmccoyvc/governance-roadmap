@@ -47,7 +47,7 @@
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white min-h-screen">
-    
+  <div id="main-wrapper" style="overflow: hidden; height: fit-content;">  
     <div class="overflow-y-auto px-4 sm:px-8 py-12">
         
         <!-- Header Section -->
@@ -1763,21 +1763,15 @@
 
     <!-- JavaScript for tab switching -->
  <script>
-    // 1. Fungsi pengirim tinggi (Sangat Akurat)
-    function postHeight() {
-        const body = document.body;
-        const html = document.documentElement;
+    // 1. Dapatkan elemen wrapper utama
+    const wrapper = document.getElementById('main-wrapper');
+
+    // 2. Fungsi untuk mengirim tinggi ke Webflow
+    function sendHeight() {
+        if (!wrapper) return;
         
-        // Reset tinggi sementara agar kalkulasi tidak nyangkut di ukuran lama
-        body.style.height = 'auto';
-        
-        const height = Math.max(
-            body.scrollHeight, 
-            body.offsetHeight, 
-            html.clientHeight, 
-            html.scrollHeight, 
-            html.offsetHeight
-        );
+        // Ambil tinggi presisi dari wrapper, bukan body
+        const height = wrapper.getBoundingClientRect().height;
 
         window.parent.postMessage({
             type: 'iframeHeight',
@@ -1785,9 +1779,23 @@
         }, '*');
     }
 
-    // 2. Fungsi pindah tab dengan paksaan 'display none'
+    // 3. ResizeObserver: Solusi Paling Modern & Pasti
+    // Ini akan otomatis mendeteksi jika tinggi wrapper berubah (misal: ganti tab)
+    // dan langsung mengirim sinyal ke Webflow tanpa perlu setTimeout.
+    const resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+            sendHeight();
+        }
+    });
+
+    // Mulai memantau wrapper
+    if (wrapper) {
+        resizeObserver.observe(wrapper);
+    }
+
+    // 4. Fungsi Tab Switching (Bersih & Sederhana)
     function switchTab(tabName) {
-        // Update Button Styles
+        // Update Style Tombol
         const buttons = document.querySelectorAll('[id^="tab-"]');
         buttons.forEach(btn => {
             btn.className = 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200';
@@ -1798,41 +1806,30 @@
             activeBtn.className = 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap bg-cyan-700/50 text-white';
         }
         
-        // Update Content Visibility (PENTING: Gunakan display none untuk tab tidak aktif)
+        // Update Konten (Gunakan display none agar wrapper mengecil)
         const contents = document.querySelectorAll('.tab-content');
         contents.forEach(content => {
-            content.classList.remove('active');
-            content.style.display = 'none'; // Sembunyikan total agar tinggi jadi 0
+            content.style.display = 'none'; // WAJIB: Sembunyikan total
         });
         
         const activeContent = document.getElementById('content-' + tabName);
         if (activeContent) {
-            activeContent.classList.add('active');
-            activeContent.style.display = 'block'; // Tampilkan hanya yang aktif
+            activeContent.style.display = 'block'; // WAJIB: Tampilkan target
         }
         
-        // Kirim tinggi setelah perubahan DOM
-        postHeight();
+        // ResizeObserver akan otomatis menangkap perubahan ini
     }
 
-    // 3. Solusi Pamungkas: MutationObserver
-    // Ini akan otomatis mengirim tinggi jika ada konten yang berubah/dimuat
-    const observer = new MutationObserver(postHeight);
-    observer.observe(document.body, { 
-        attributes: true, 
-        childList: true, 
-        subtree: true 
-    });
-
     // Inisialisasi awal
-    window.addEventListener('load', postHeight);
-    window.addEventListener('resize', postHeight);
     document.addEventListener('DOMContentLoaded', () => {
         switchTab('path');
+        // Kirim tinggi awal
+        setTimeout(sendHeight, 100);
     });
 </script>
 </body>
 </html>
+
 
 
 
