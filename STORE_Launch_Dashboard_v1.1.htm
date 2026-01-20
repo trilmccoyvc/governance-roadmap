@@ -1762,47 +1762,57 @@
     </div>
 
     <!-- JavaScript for tab switching -->
-    <script>
-        function switchTab(tabName) {
-    const buttons = document.querySelectorAll('[id^="tab-"]');
-    buttons.forEach(btn => {
-        btn.setAttribute('class', 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200');
-    });
-    
-    // Set active tab
-    const activeBtn = document.getElementById('tab-' + tabName);
-    activeBtn.setAttribute('class', 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap bg-cyan-700/50 text-white');
-    
-    // Update content visibility
-    const contents = document.querySelectorAll('.tab-content');
-    contents.forEach(content => {
-        content.classList.remove('active');
-    });
-    
-    document.getElementById('content-' + tabName).classList.add('active');
-}
-        document.addEventListener('DOMContentLoaded', function() {
-            switchTab('path');
-            setTimeout(postHeight, 50);
-        });
-    </script>
-
-    <script>
+ <script>
     function postHeight() {
-        const height = document.body.scrollHeight;
+        document.body.style.height = 'auto'; 
+        
+        const height = Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight,
+            document.documentElement.offsetHeight
+        );
+
         window.parent.postMessage({
             type: 'iframeHeight',
             height: height
         }, '*');
     }
+
+    function switchTab(tabName) {
+        const buttons = document.querySelectorAll('[id^="tab-"]');
+        buttons.forEach(btn => {
+            btn.setAttribute('class', 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap text-gray-400 hover:text-gray-200');
+        });
+        
+        const activeBtn = document.getElementById('tab-' + tabName);
+        if (activeBtn) {
+            activeBtn.setAttribute('class', 'px-6 py-3 text-sm font-medium rounded-md transition-colors whitespace-nowrap bg-cyan-700/50 text-white');
+        }
+        
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        const activeContent = document.getElementById('content-' + tabName);
+        if (activeContent) {
+            activeContent.classList.add('active');
+        }
+
+        requestAnimationFrame(() => {
+            postHeight();
+            setTimeout(postHeight, 150);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        switchTab('path');
+    });
+
     window.addEventListener('load', postHeight);
     window.addEventListener('resize', postHeight);
-    const originalSwitchTab = window.switchTab;
-    window.switchTab = function(tabName) {
-        originalSwitchTab(tabName);
-        setTimeout(postHeight, 100);
-    };
 </script>
 </body>
 </html>
+
 
