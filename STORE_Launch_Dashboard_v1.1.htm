@@ -1747,15 +1747,9 @@
                         <div><span class="text-amber-400 font-medium">P2</span> <span class="text-gray-500">Medium priority, enhances launch</span></div>
                     </div>
                 </div>
-
             </div>
-            <!-- END OF BUILDING TAB -->
-
         </div>
-        <!-- END OF TAB CONTENT CONTAINER -->
-
     </div>
-    <!-- END OF MAIN CONTENT DIV -->
 
     <!-- Footer -->
     <div class="max-w-[960px] mx-auto px-4 sm:px-8 py-6 border-t border-slate-800">
@@ -1787,20 +1781,27 @@
     
     document.getElementById('content-' + tabName).classList.add('active');
 }
-
-        // Initialize with Path to Launch tab active
         document.addEventListener('DOMContentLoaded', function() {
             switchTab('path');
+            setTimeout(postHeight, 50);
         });
     </script>
 
+    <script>
+    function postHeight() {
+        const height = document.body.scrollHeight;
+        window.parent.postMessage({
+            type: 'iframeHeight',
+            height: height
+        }, '*');
+    }
+    window.addEventListener('load', postHeight);
+    window.addEventListener('resize', postHeight);
+    const originalSwitchTab = window.switchTab;
+    window.switchTab = function(tabName) {
+        originalSwitchTab(tabName);
+        setTimeout(postHeight, 100);
+    };
+</script>
 </body>
 </html>
-            <!-- END OF STORY TAB -->
-
-            <!-- PART 3 CONTINUES WITH BUILDING TAB - SEE NEXT FILE -->
-            <!-- END OF PATH TO LAUNCH TAB -->
-
-            <!-- PART 2 CONTINUES WITH STORY TAB - SEE NEXT FILE -->
-
-                <!-- PART 1 ENDS HERE - CONTINUED IN PART 2 -->
