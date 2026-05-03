@@ -66,7 +66,7 @@ body {
   position: relative;
 }
 
-/* Editorial backdrop — subtle radial atmosphere, single layer for performance */
+/* Editorial backdrop */
 body::before {
   content: '';
   position: fixed;
@@ -79,7 +79,6 @@ body::before {
   pointer-events: none;
 }
 
-/* Grid overlay — very subtle, signals "infrastructure" */
 body::after {
   content: '';
   position: fixed;
@@ -165,8 +164,7 @@ body::after {
   opacity: 0.7;
 }
 
-
-/* ============ ITEM ROWS (collapsible cards) ============ */
+/* ============ ITEM ROWS ============ */
 
 .row-item {
   position: relative;
@@ -201,7 +199,6 @@ body::after {
   padding: 0 16px 16px 50px;
 }
 
-/* Status dot system */
 .dot {
   flex-shrink: 0;
   width: 10px;
@@ -235,8 +232,6 @@ body::after {
   50% { opacity: 0.5; transform: scale(1.4); }
 }
 
-/* ============ BADGES (status pills) ============ */
-
 .badge {
   display: inline-flex;
   align-items: center;
@@ -259,8 +254,6 @@ body::after {
 .badge-new { background: rgba(20,184,166,0.18); color: #5eead4; border: 1px solid rgba(20,184,166,0.32); }
 .badge-shipped { background: rgba(16,185,129,0.18); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.32); }
 .badge-regulatory { background: rgba(100,116,139,0.12); color: #94a3b8; border: 1px solid rgba(100,116,139,0.22); }
-
-/* ============ CARDS ============ */
 
 .card {
   background: linear-gradient(180deg, rgba(15,23,42,0.65), rgba(15,23,42,0.4));
@@ -302,7 +295,6 @@ body::after {
   border-color: rgba(6,182,212,0.22);
 }
 
-/* Section header */
 .section-eyebrow {
   font-size: 11px;
   font-weight: 600;
@@ -319,8 +311,6 @@ body::after {
   background: currentColor;
   opacity: 0.6;
 }
-
-/* ============ PROGRESS BARS ============ */
 
 .bar-track {
   height: 6px;
@@ -343,8 +333,6 @@ body::after {
   to { transform: scaleX(1); }
 }
 
-/* ============ HERO BIG NUMBER ============ */
-
 .hero-num {
   font-weight: 800;
   font-feature-settings: 'tnum';
@@ -358,12 +346,8 @@ body::after {
   position: relative;
 }
 
-/* ============ SCROLLBAR HIDE ============ */
-
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
-
-/* ============ TAB NAVIGATION ============ */
 
 .tab-nav-bar {
   position: sticky;
@@ -407,8 +391,6 @@ body::after {
   border-radius: 2px;
 }
 
-/* ============ SECTION ANCHOR CHIPS (in-page nav) ============ */
-
 .anchor-rail {
   display: flex;
   gap: 8px;
@@ -447,8 +429,6 @@ body::after {
   opacity: 0.5;
 }
 
-/* ============ HOVER & MICRO ============ */
-
 a, button { -webkit-tap-highlight-color: transparent; }
 
 .link-arrow {
@@ -459,8 +439,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
 }
 .link-arrow:hover { gap: 7px; }
 
-/* ============ REDUCED MOTION ============ */
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -469,15 +447,12 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .bar-fill { transform: scaleX(1); }
 }
 
-/* ============ MOBILE OPTIMIZATIONS ============ */
-
 @media (max-width: 640px) {
   body::after { background-size: 32px 32px; }
   .row-summary { padding: 12px 12px; gap: 10px; }
   .row-detail-inner { padding: 0 12px 14px 36px; }
 }
 
-/* Print fallback */
 @media print {
   body::before, body::after { display: none; }
   .tab-content { display: block !important; }
@@ -490,24 +465,26 @@ a, button { -webkit-tap-highlight-color: transparent; }
 <div class="px-4 sm:px-8 py-10 sm:py-14">
 
 <!-- ====================================================
-     HEADER — editorial hero with breathing room
+     HEADER
 ==================================================== -->
 <header class="max-w-[960px] mx-auto mb-10">
   <div class="flex items-start justify-between flex-wrap gap-6 mb-8">
     <div class="flex items-start gap-4">
       <img src="https://cdn.prod.website-files.com/5f48a063be66ba845f0d598c/688242a02e83bccd730a7c79_STORE_White_New_Jul25_High.png" alt="STORE Cloud" class="h-10 sm:h-11 w-auto object-contain flex-shrink-0 mt-0.5">
       <div>
-        <p class="eyebrow mb-2" style="color: rgba(94,234,212,0.65);">Launch Dashboard · v3.0</p>
+        <p class="eyebrow mb-2" style="color: rgba(94,234,212,0.65);">Launch Dashboard</p>
         <h1 class="text-3xl sm:text-[2.5rem] font-bold tracking-tight leading-[1.1] text-white">
-          AI Infrastructure That<br>
-          <span style="background: linear-gradient(135deg, #67e8f9 0%, #818cf8 50%, #c4b5fd 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Humanity Can Govern</span>
+          Launch Dashboard
         </h1>
+        <p class="text-base sm:text-lg text-gray-300 font-light mt-1">
+          AI Infrastructure That Humanity Can Govern
+        </p>
       </div>
     </div>
 
-    <!-- Hero metric — 72% — editorial display number -->
+    <!-- Hero metric -->
     <div class="flex flex-col items-end ml-auto">
-      <p class="eyebrow mb-2" style="color: rgba(94,234,212,0.55);">Path to Launch</p>
+      <p class="text-sm text-gray-400 mt-1">Path to Launch</p>
       <div class="flex items-baseline gap-1">
         <span id="hero-num" class="hero-num display-num text-[5rem] sm:text-[6.5rem]" data-target="72">0</span>
         <span class="text-3xl sm:text-4xl font-bold" style="color: rgba(94,234,212,0.6);">%</span>
@@ -515,12 +492,11 @@ a, button { -webkit-tap-highlight-color: transparent; }
     </div>
   </div>
 
-  <!-- Master progress bar with milestone ticks -->
+  <!-- Master progress bar -->
   <div class="relative">
     <div class="bar-track" style="height: 8px;">
       <div class="bar-fill bar-fill-emerald" style="width: 72%;"></div>
     </div>
-    <!-- Milestone ticks -->
     <div class="absolute inset-0 flex justify-between pointer-events-none" style="padding: 0 2px;">
       <span class="block w-px h-3 -mt-0.5" style="background: rgba(148,163,184,0.25);"></span>
       <span class="block w-px h-3 -mt-0.5" style="background: rgba(148,163,184,0.25);"></span>
@@ -528,31 +504,27 @@ a, button { -webkit-tap-highlight-color: transparent; }
       <span class="block w-px h-3 -mt-0.5" style="background: rgba(148,163,184,0.25);"></span>
     </div>
     <p class="text-sm text-slate-400 mt-4 leading-relaxed max-w-[700px]">
-      Each section below — <span class="text-slate-200">technical progress</span>, <span class="text-slate-200">regulatory status</span>, <span class="text-slate-200">funding</span>, and <span class="text-slate-200">execution plan</span> — maps to one or more of the four conditions that must be met before launch.
+      Each section below — technical progress, regulatory status, funding, and execution plan — maps to one or more of the four conditions that must be met before launch.
     </p>
   </div>
 </header>
 
 <!-- ====================================================
-     TAB NAVIGATION — sticky, with underline indicator
+     TAB NAVIGATION
 ==================================================== -->
 <div class="tab-nav-bar">
   <div class="max-w-[960px] mx-auto px-4 sm:px-8">
     <div class="overflow-x-auto scrollbar-hide">
-      <div class="flex gap-4 sm:gap-8"> <!-- Gap diperlebar agar lebih lega -->
-        
+      <div class="flex gap-4 sm:gap-8">
         <button onclick="switchTab('path')" id="tab-path" class="tab-btn active">
           Path to Launch
         </button>
-
         <button onclick="switchTab('story')" id="tab-story" class="tab-btn">
           The Story
         </button>
-
         <button onclick="switchTab('building')" id="tab-building" class="tab-btn">
           What We're Building
         </button>
-        
       </div>
     </div>
   </div>
@@ -589,7 +561,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <div>
       <p class="section-eyebrow mb-3" style="color: #34d399;">Critical Path</p>
       <h2 class="text-2xl sm:text-[1.75rem] font-bold tracking-tight text-white">Launch Conditions</h2>
-      <p class="text-base text-slate-300 mt-2">Launch happens when all four are met.</p>
+      <p class="text-base text-slate-300 mt-2">Launch happens when all four are met:</p>
     </div>
     <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full" style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25);">
       <span class="inline-block w-1.5 h-1.5 rounded-full" style="background: #f59e0b; box-shadow: 0 0 8px #f59e0b;"></span>
@@ -597,39 +569,38 @@ a, button { -webkit-tap-highlight-color: transparent; }
     </div>
   </div>
 
-  <!-- Conditions list -->
   <ol class="space-y-3 mb-7">
     <li class="flex items-start gap-4 p-3 rounded-xl" style="background: rgba(16,185,129,0.04); border: 1px solid rgba(16,185,129,0.12);">
       <span class="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-sm font-bold" style="background: rgba(16,185,129,0.15); color: #34d399;">1</span>
       <div class="flex-1 min-w-0">
         <p class="text-base text-white font-semibold">Funding reaches Third Funding Milestone ($2.67M)</p>
-        <p class="text-xs text-slate-400 mt-0.5">(Neil Armstrong) Necessary</p>
+        <p class="text-xs text-slate-400 mt-0.5">- (Neil Armstrong) Necessary</p>
       </div>
     </li>
     <li class="flex items-start gap-4 p-3 rounded-xl" style="background: rgba(16,185,129,0.04); border: 1px solid rgba(16,185,129,0.12);">
       <span class="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-sm font-bold" style="background: rgba(16,185,129,0.15); color: #34d399;">2</span>
       <div class="flex-1 min-w-0">
         <p class="text-base text-white font-semibold">MME (Swiss lawyer) signs off on payment flows</p>
-        <p class="text-xs text-slate-400 mt-0.5">Critical Gate 1</p>
+        <p class="text-xs text-slate-400 mt-0.5">- Critical Gate 1</p>
       </div>
     </li>
     <li class="flex items-start gap-4 p-3 rounded-xl" style="background: rgba(16,185,129,0.04); border: 1px solid rgba(16,185,129,0.12);">
       <span class="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-sm font-bold" style="background: rgba(16,185,129,0.15); color: #34d399;">3</span>
       <div class="flex-1 min-w-0">
         <p class="text-base text-white font-semibold">Tax ruling favorable for asset transfer</p>
-        <p class="text-xs text-slate-400 mt-0.5">Critical Gate 2</p>
+        <p class="text-xs text-slate-400 mt-0.5">- Critical Gate 2</p>
       </div>
     </li>
     <li class="flex items-start gap-4 p-3 rounded-xl" style="background: rgba(16,185,129,0.04); border: 1px solid rgba(16,185,129,0.12);">
       <span class="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-sm font-bold" style="background: rgba(16,185,129,0.15); color: #34d399;">4</span>
       <div class="flex-1 min-w-0">
         <p class="text-base text-white font-semibold">Technical execution complete</p>
-        <p class="text-xs text-slate-400 mt-0.5">Required — sprint-based execution, sprint 2 of X. Engineering, security, and technical throughput determine the timeline.</p>
+        <p class="text-xs text-slate-400 mt-0.5">- Required — sprint-based execution, sprint 2 of X. Engineering, security, and technical throughput determine the timeline.</p>
       </div>
     </li>
   </ol>
 
-  <!-- Critical gates — paired side-by-side on desktop -->
+  <!-- Critical gates -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
     <div class="rounded-xl p-4" style="background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25);">
       <div class="flex items-center gap-2 mb-2">
@@ -638,7 +609,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
         <span class="ml-auto text-xs font-semibold" style="color: #fbbf24;">External</span>
       </div>
       <p class="font-semibold text-white text-sm sm:text-base mb-1">MME Sign-off on Payment Flows</p>
-      <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">~70% estimated complete — Demonstrating autonomous infrastructure status to Swiss counsel</p>
+      <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">~70% estimated complete - Demonstrating autonomous infrastructure status to Swiss counsel</p>
     </div>
     <div class="rounded-xl p-4" style="background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25);">
       <div class="flex items-center gap-2 mb-2">
@@ -656,7 +627,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   </div>
 </section>
 
-<!-- ===== Control Indicator Legend (compact) ===== -->
+<!-- ===== Control Indicator Legend ===== -->
 <div class="flex items-center gap-5 text-xs text-slate-400 mb-6 flex-wrap px-2">
   <div class="flex items-center gap-2">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
@@ -668,7 +639,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   </div>
 </div>
 
-<!-- ===== COMPASS — Constitutional Protocol (collapsible) ===== -->
+<!-- ===== COMPASS ===== -->
 <section id="sec-compass" class="card card-accent-violet mb-8 overflow-hidden scroll-mt-20">
   <button type="button" onclick="toggleCollapse('compass')" class="w-full text-left px-6 sm:px-8 pt-7 pb-6 cursor-pointer select-none" style="border-bottom: 1px solid rgba(139,92,246,0.14);">
     <div class="flex items-start justify-between flex-wrap gap-4">
@@ -690,18 +661,15 @@ a, button { -webkit-tap-highlight-color: transparent; }
   <div id="compass-body" class="collapse-body open">
     <div class="p-6 sm:p-8">
       <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-3">
-        STORE doesn't flip the switch until the law says we can. Before any regulated product goes live — TREASURIES, the Godzilla Fund, or the Governor Protocol — it must complete the COMPASS sequence: a constitutional 7-step process written into STORE's governance.
+        STORE doesn't flip the switch until the law says we can. Before any regulated product goes live - TREASURIES, the Godzilla Fund, or the Governor Protocol - it must complete the COMPASS sequence: a constitutional 7-step process written into STORE's governance.
       </p>
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg mb-7 text-xs font-semibold" style="background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.25); color: #a5b4fc;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         No single actor can shortcut it.
       </div>
 
-      <!-- Vertical timeline with connecting line -->
       <div class="relative">
-        <!-- Vertical connecting line -->
         <div class="absolute left-[18px] top-3 bottom-3 w-px" style="background: linear-gradient(180deg, rgba(139,92,246,0.4), rgba(139,92,246,0.15));"></div>
-
         <ol class="space-y-2 relative">
           <li class="flex items-start gap-4 p-3 rounded-xl" style="transition: background var(--transition-fast);" onmouseover="this.style.background='rgba(139,92,246,0.04)'" onmouseout="this.style.background=''">
             <div class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold relative z-10" style="background: rgba(15,23,42,1); border: 1.5px solid rgba(139,92,246,0.45); color: #a5b4fc;">1</div>
@@ -747,7 +715,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
           <li class="flex items-start gap-4 p-3 rounded-xl" style="background: linear-gradient(90deg, rgba(139,92,246,0.12), rgba(139,92,246,0.04)); border: 1px solid rgba(139,92,246,0.3);">
             <div class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold relative z-10" style="background: linear-gradient(135deg, #8b5cf6, #6366f1); color: #ffffff; box-shadow: 0 0 16px rgba(139,92,246,0.4);">7</div>
             <div class="flex-1 pt-1.5">
-              <p class="text-sm sm:text-base font-bold tracking-wider" style="color: #c7d2fe;">LAUNCH</p>
+              <p class="text-sm sm:text-base font-bold tracking-wider" style="color: #c7d2fe;">Launch</p>
             </div>
           </li>
         </ol>
@@ -799,10 +767,9 @@ a, button { -webkit-tap-highlight-color: transparent; }
   </div>
 
   <p class="text-xs text-slate-500 mt-5">Percentages are estimated and subject to change based on progress against and the requirements of each milestone.</p>
-  <p class="text-sm text-slate-400 mt-3">Current raise: $1M at $0.039 — targets Thomas Paine milestone ($2M). Full $4M arc is long-term.</p>
+  <p class="text-sm text-slate-400 mt-3">Current raise: $1M at $0.039 - targets Thomas Paine milestone ($2M). Full $4M arc is long-term.</p>
   <p class="text-sm text-slate-400 mt-1.5">Technical progress is ahead of funding progress.</p>
 </section>
-
 
 <!-- ===== What Shipped Since Last Update ===== -->
 <section id="sec-shipped" class="card p-6 sm:p-8 mb-8 scroll-mt-20">
@@ -822,15 +789,15 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <div class="flex items-start gap-4 p-4 rounded-xl" style="background: rgba(16,185,129,0.04); border: 1px solid rgba(16,185,129,0.18);">
       <div class="dot dot-complete"></div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-base mb-1">STORE Pay 3.0 — Complete</p>
-        <p class="text-sm text-slate-400 leading-relaxed">Full purchase pipeline works end-to-end. Registration, KYC, agreement, payment, and on-chain verification in one session. Community tested across 7 countries — scored 9.5/10 with zero production bugs. Buy Order Form live at <a href="https://storecloud.org/buystore" target="_blank" rel="noopener noreferrer" class="link-arrow underline hover:opacity-75 transition-opacity" style="color: #5eead4;">storecloud.org/buystore</a>.</p>
+        <p class="font-semibold text-white text-base mb-1">STORE Pay 3.0 - Complete</p>
+        <p class="text-sm text-slate-400 leading-relaxed">Full purchase pipeline works end-to-end. Registration, KYC, agreement, payment, and on-chain verification in one session. Community tested across 7 countries - scored 9.5/10 with zero production bugs. Buy Order Form live at <a href="https://storecloud.org/buystore" target="_blank" rel="noopener noreferrer" class="link-arrow underline hover:opacity-75 transition-opacity" style="color: #5eead4;">storecloud.org/buystore</a>.</p>
       </div>
     </div>
 
     <div class="flex items-start gap-4 p-4 rounded-xl" style="background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.2);">
       <div class="dot dot-progress"></div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-base mb-1">STORE VERIFY Protocol — Testnet Live</p>
+        <p class="font-semibold text-white text-base mb-1">STORE VERIFY Protocol - Testnet Live</p>
         <p class="text-sm text-slate-400 leading-relaxed">On-chain payment verification deployed on Optimism Sepolia. Every token purchase gets an Ethereum signature on Optimism L2. Mainnet deployment is a 1-2 day operation once wallet provider is finalized.</p>
       </div>
     </div>
@@ -838,7 +805,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <div class="flex items-start gap-4 p-4 rounded-xl" style="background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.2);">
       <div class="dot dot-progress"></div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-base mb-1">STORE Convert Protocol — Logic Built</p>
+        <p class="font-semibold text-white text-base mb-1">STORE Convert Protocol - Logic Built</p>
         <p class="text-sm text-slate-400 leading-relaxed">USDC-to-USD conversion pipeline with Circle API integration, automated conversion logic, transaction monitoring, and bank settlement. Circle API credentials secured. Final module integration is the next step.</p>
       </div>
     </div>
@@ -846,7 +813,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <div class="flex items-start gap-4 p-4 rounded-xl" style="background: rgba(16,185,129,0.04); border: 1px solid rgba(16,185,129,0.18);">
       <div class="dot dot-complete"></div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-base mb-1">First Governance — Ballot Executed</p>
+        <p class="font-semibold text-white text-base mb-1">First Governance - Ballot Executed</p>
         <p class="text-sm text-slate-400 leading-relaxed">BFT-compliant voting engine with voter authentication, voter registry, and Cloud ID with IPFS permanent storage. Delivered and community tested. 7-phase governance hardening roadmap now active.</p>
       </div>
     </div>
@@ -867,7 +834,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <div class="flex items-start gap-4 p-4 rounded-xl" style="background: rgba(16,185,129,0.04); border: 1px solid rgba(16,185,129,0.18);">
       <div class="dot dot-complete"></div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-base mb-1">STORE Pay Integration — Complete</p>
+        <p class="font-semibold text-white text-base mb-1">STORE Pay Integration - Complete</p>
         <p class="text-sm text-slate-400 leading-relaxed">Pay 3.0 connected to DaaS for revenue generation. Live at <a href="https://storecloud.org/buystore" target="_blank" rel="noopener noreferrer" class="link-arrow underline hover:opacity-75 transition-opacity" style="color: #5eead4;">storecloud.org/buystore</a>.</p>
       </div>
     </div>
@@ -876,7 +843,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
       <div class="dot dot-complete"></div>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 flex-wrap mb-1">
-          <p class="font-semibold text-white text-base">STORE Identity — Complete</p>
+          <p class="font-semibold text-white text-base">STORE Identity - Complete</p>
           <span class="badge badge-new">NEW</span>
         </div>
         <p class="text-sm text-slate-400 leading-relaxed">Single sign-on across all STORE services. User dashboard with balance display. Personal endpoints for orders, votes, Cloud IDs, and profile.</p>
@@ -887,7 +854,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
       <div class="dot dot-complete"></div>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 flex-wrap mb-1">
-          <p class="font-semibold text-white text-base">STORE Governance HQ — Complete</p>
+          <p class="font-semibold text-white text-base">STORE Governance HQ - Complete</p>
           <span class="badge badge-new">NEW</span>
         </div>
         <p class="text-sm text-slate-400 leading-relaxed">Internal operations dashboard with 12 feature areas, real-time updates, governance controls, and security review complete.</p>
@@ -898,7 +865,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
       <div class="dot dot-complete"></div>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 flex-wrap mb-1">
-          <p class="font-semibold text-white text-base">Unified Platform — Complete</p>
+          <p class="font-semibold text-white text-base">Unified Platform - Complete</p>
           <span class="badge badge-new">NEW</span>
         </div>
         <p class="text-sm text-slate-400 leading-relaxed">STORE Pay and STORE Vote merged into a single platform with unified branding.</p>
@@ -908,7 +875,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   </div>
 </section>
 
-<!-- ===== By the Numbers — stat grid editorial ===== -->
+<!-- ===== By the Numbers ===== -->
 <section id="sec-numbers" class="card p-6 sm:p-8 mb-8 scroll-mt-20">
   <div class="mb-6">
     <p class="section-eyebrow mb-2.5" style="color: #5eead4;">Quantitative Snapshot</p>
@@ -950,8 +917,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   </div>
 </section>
 
-
-<!-- ===== Scorecard — filterable table ===== -->
+<!-- ===== Scorecard ===== -->
 <section id="sec-scorecard" class="card p-6 sm:p-8 mb-8 scroll-mt-20">
   <div class="mb-5">
     <p class="section-eyebrow mb-2.5" style="color: #5eead4;">Audit</p>
@@ -967,7 +933,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <button class="filter-chip" data-filter-scope="scorecard" data-filter="pending"><span class="inline-block w-1.5 h-1.5 rounded-full" style="background: rgba(100,116,139,0.7);"></span>Sequenced <span class="filter-chip-count">11</span></button>
   </div>
 
-  <!-- Card-style rows (better than table on mobile) -->
   <div class="rounded-xl overflow-hidden" style="background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.08);">
     <div class="hidden sm:grid grid-cols-[40px_1fr_auto] gap-4 px-4 py-3 text-[10px] font-semibold tracking-widest uppercase" style="color: #64748b; background: rgba(15,23,42,0.7); border-bottom: 1px solid rgba(148,163,184,0.08);">
       <div>#</div><div>Item</div><div>Status</div>
@@ -997,7 +962,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
       <div class="scorecard-row grid grid-cols-[28px_1fr] sm:grid-cols-[40px_1fr_auto] gap-3 sm:gap-4 px-4 py-3 items-center" data-status="complete" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
         <div class="text-sm text-slate-500 font-mono">5</div>
         <div class="text-sm text-slate-200">STORE AI Architecture</div>
-        <div class="col-span-2 sm:col-span-1"><span class="badge badge-complete">Complete (v5.15)</span></div>
+        <div class="col-span-2 sm:col-span-1"><span class="badge badge-complete">Complete (v5.15, latest ratified: v5.9, March 6)</span></div>
       </div>
       <div class="scorecard-row grid grid-cols-[28px_1fr] sm:grid-cols-[40px_1fr_auto] gap-3 sm:gap-4 px-4 py-3 items-center" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
         <div class="text-sm text-slate-500 font-mono">6</div>
@@ -1094,24 +1059,23 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <div>
       <p class="section-eyebrow mb-2.5" style="color: #93c5fd;">Execution</p>
       <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">What's Next: 60-Day Plan</h2>
-      <p class="text-sm text-slate-400 mt-2">March 17 – May 12 · Active execution plan with 6 phases</p>
+      <p class="text-sm text-slate-400 mt-2">March 17 - May 12 · Active execution plan with 6 phases</p>
     </div>
   </div>
 
-  <!-- Horizontal phase bar — 6 phases -->
   <div class="space-y-2.5 mb-5">
     <div class="flex items-center gap-4 p-3.5 rounded-xl" style="background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2);">
       <div class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold" style="background: rgba(16,185,129,0.18); color: #34d399;">1</div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-sm sm:text-base">Phase 1 — Integration testing + security hardening</p>
-        <p class="text-xs text-slate-400 mt-0.5">Week 1 (March 17-23) · Complete</p>
+        <p class="font-semibold text-white text-sm sm:text-base">Phase 1 - Integration testing + security hardening</p>
+        <p class="text-xs text-slate-400 mt-0.5">Week 1 (March 17-23) - Complete</p>
       </div>
       <span class="badge badge-complete flex-shrink-0">Done</span>
     </div>
     <div class="flex items-center gap-4 p-3.5 rounded-xl" style="background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.18);">
       <div class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold" style="background: rgba(245,158,11,0.18); color: #fbbf24;">2</div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-sm sm:text-base">Phase 2 — Constitutional Fee Model</p>
+        <p class="font-semibold text-white text-sm sm:text-base">Phase 2 - Constitutional Fee Model</p>
         <p class="text-xs text-slate-400 mt-0.5">Weeks 2-4</p>
       </div>
       <span class="badge badge-progress flex-shrink-0">Active</span>
@@ -1119,7 +1083,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <div class="flex items-center gap-4 p-3.5 rounded-xl" style="background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.1);">
       <div class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold" style="background: rgba(100,116,139,0.18); color: #94a3b8;">3</div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-sm sm:text-base">Phase 3 — CONVERT module, Circle integration</p>
+        <p class="font-semibold text-white text-sm sm:text-base">Phase 3 - CONVERT module, Circle integration</p>
         <p class="text-xs text-slate-400 mt-0.5">Weeks 4-5</p>
       </div>
       <span class="badge badge-pending flex-shrink-0">Queued</span>
@@ -1127,7 +1091,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <div class="flex items-center gap-4 p-3.5 rounded-xl" style="background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.1);">
       <div class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold" style="background: rgba(100,116,139,0.18); color: #94a3b8;">4</div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-sm sm:text-base">Phase 4 — LedgerService, centralized token ledger</p>
+        <p class="font-semibold text-white text-sm sm:text-base">Phase 4 - LedgerService, centralized token ledger</p>
         <p class="text-xs text-slate-400 mt-0.5">Weeks 5-6</p>
       </div>
       <span class="badge badge-pending flex-shrink-0">Queued</span>
@@ -1135,7 +1099,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <div class="flex items-center gap-4 p-3.5 rounded-xl" style="background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.1);">
       <div class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold" style="background: rgba(100,116,139,0.18); color: #94a3b8;">5</div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-sm sm:text-base">Phase 5 — Oracle Convergence, migrate Oracle into STORE AI</p>
+        <p class="font-semibold text-white text-sm sm:text-base">Phase 5 - Oracle Convergence, migrate Oracle into STORE AI</p>
         <p class="text-xs text-slate-400 mt-0.5">Week 7</p>
       </div>
       <span class="badge badge-pending flex-shrink-0">Queued</span>
@@ -1143,7 +1107,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <div class="flex items-center gap-4 p-3.5 rounded-xl" style="background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.1);">
       <div class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold" style="background: rgba(100,116,139,0.18); color: #94a3b8;">6</div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-white text-sm sm:text-base">Phase 6 — Governance Phases 4-7</p>
+        <p class="font-semibold text-white text-sm sm:text-base">Phase 6 - Governance Phases 4-7</p>
         <p class="text-xs text-slate-400 mt-0.5">Week 8</p>
       </div>
       <span class="badge badge-pending flex-shrink-0">Queued</span>
@@ -1156,8 +1120,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   </div>
 </section>
 
-
-<!-- ===== Funding Section (combined) ===== -->
+<!-- ===== Funding Section ===== -->
 <section id="sec-funding" class="mb-8 scroll-mt-20">
   <!-- How Funding Maps to Milestones -->
   <div class="card card-accent-emerald p-6 sm:p-8 mb-5">
@@ -1166,11 +1129,10 @@ a, button { -webkit-tap-highlight-color: transparent; }
       <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">How Funding Maps to Milestones</h2>
     </div>
 
-    <!-- Funding milestones as visual chain -->
     <div class="space-y-3">
       <div class="rounded-xl p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-[1.5fr_1fr_1.5fr] gap-3 sm:gap-5 items-center" style="background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.18);">
         <div>
-          <p class="text-xs font-semibold tracking-widest uppercase mb-1" style="color: rgba(94,234,212,0.6);">First Milestone (⅓)</p>
+          <p class="text-xs font-semibold tracking-widest uppercase mb-1" style="color: rgba(94,234,212,0.6);">First Funding Milestone (⅓)</p>
           <p class="font-bold text-white text-base sm:text-lg">Marcus Aurelius</p>
         </div>
         <div>
@@ -1181,7 +1143,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
       </div>
       <div class="rounded-xl p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-[1.5fr_1fr_1.5fr] gap-3 sm:gap-5 items-center" style="background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.18);">
         <div>
-          <p class="text-xs font-semibold tracking-widest uppercase mb-1" style="color: rgba(94,234,212,0.6);">Second Milestone (⅔)</p>
+          <p class="text-xs font-semibold tracking-widest uppercase mb-1" style="color: rgba(94,234,212,0.6);">Second Funding Milestone (⅔)</p>
           <p class="font-bold text-white text-base sm:text-lg">Thomas Paine</p>
         </div>
         <div>
@@ -1192,8 +1154,8 @@ a, button { -webkit-tap-highlight-color: transparent; }
       </div>
       <div class="rounded-xl p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-[1.5fr_1fr_1.5fr] gap-3 sm:gap-5 items-center" style="background: linear-gradient(90deg, rgba(16,185,129,0.12), rgba(16,185,129,0.04)); border: 1px solid rgba(16,185,129,0.3);">
         <div>
-          <p class="text-xs font-semibold tracking-widest uppercase mb-1" style="color: rgba(94,234,212,0.7);">Third Milestone (Full)</p>
-          <p class="font-bold text-white text-base sm:text-lg">Neil Armstrong 🚀</p>
+          <p class="text-xs font-semibold tracking-widest uppercase mb-1" style="color: rgba(94,234,212,0.7);">Third Funding Milestone (Full)</p>
+          <p class="font-bold text-white text-base sm:text-lg">Neil Armstrong</p>
         </div>
         <div>
           <p class="display-num text-2xl sm:text-3xl font-bold" style="color: #5eead4;">$2.67M</p>
@@ -1229,7 +1191,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
       </div>
     </div>
 
-    <!-- Chain visualization -->
     <div class="space-y-2">
       <div class="flex items-center gap-3 p-3 rounded-lg" style="background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.2);">
         <span class="display-num font-bold text-xs flex-shrink-0 w-6 text-center" style="color: rgba(167,139,250,0.5);">01</span>
@@ -1259,7 +1220,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
   </div>
 </section>
 
-
 <!-- ===== Regulatory Strategy ===== -->
 <section id="sec-regulatory" class="card card-accent-cyan p-6 sm:p-8 mb-5 scroll-mt-20">
   <div class="mb-6">
@@ -1267,7 +1227,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Regulatory Strategy</h2>
   </div>
 
-  <!-- Hybrid Token classification callout -->
   <div class="rounded-xl p-4 sm:p-5 flex items-start gap-3 mb-5" style="background: rgba(6,182,212,0.06); border: 1px solid rgba(6,182,212,0.2);">
     <div class="flex-shrink-0 mt-0.5 w-5 h-5 rounded flex items-center justify-center" style="background: rgba(6,182,212,0.15);">
       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -1275,7 +1234,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <p class="text-sm text-slate-300 leading-relaxed"><span class="font-semibold" style="color: #22d3ee;">Hybrid Token:</span> FINMA likely classifies STORE as hybrid (utility + payment) due to STORE Pay. This is why payment flows require demonstration.</p>
   </div>
 
-  <!-- Two paths side-by-side -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
     <div class="rounded-xl p-5 sm:p-6 relative overflow-hidden" style="background: linear-gradient(135deg, rgba(6,78,59,0.4) 0%, rgba(15,23,42,0.85) 100%); border: 1px solid rgba(16,185,129,0.35);">
       <div class="absolute top-0 right-0 w-24 h-24 rounded-full opacity-10" style="background: radial-gradient(circle, #34d399, transparent); transform: translate(40%,-40%);"></div>
@@ -1296,13 +1254,12 @@ a, button { -webkit-tap-highlight-color: transparent; }
     </div>
   </div>
 
-  <!-- MiCA Note -->
   <div class="rounded-xl p-4" style="background: rgba(15,23,42,0.7); border: 1px solid rgba(51,65,85,0.4);">
-    <p class="text-xs text-slate-500 leading-relaxed"><span class="font-semibold text-slate-400">Note on MiCA:</span> MiCA is a European regulatory framework that applies regardless of domicile. We're evaluating MiCA compliance in parallel with our Switzerland path — it's not an alternative jurisdiction, it's a compliance layer.</p>
+    <p class="text-xs text-slate-500 leading-relaxed"><span class="font-semibold text-slate-400">Note on MiCA:</span> MiCA is a European regulatory framework that applies regardless of domicile. We're evaluating MiCA compliance in parallel with our Switzerland path - it's not an alternative jurisdiction, it's a compliance layer.</p>
   </div>
 </section>
 
-<!-- ===== Regulatory Path Milestones — collapsible filterable list ===== -->
+<!-- ===== Regulatory Path Milestones ===== -->
 <section class="card p-6 sm:p-8 mb-8">
   <div class="mb-5">
     <p class="section-eyebrow mb-2.5" style="color: #5eead4;">15 Milestones</p>
@@ -1310,7 +1267,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
     <p class="text-sm text-slate-400 mt-2">Tap any milestone to expand details.</p>
   </div>
 
-  <!-- Filter chips -->
   <div class="flex flex-wrap gap-2 mb-5">
     <button class="filter-chip active" data-filter-scope="reg" data-filter="all">All <span class="filter-chip-count">15</span></button>
     <button class="filter-chip" data-filter-scope="reg" data-filter="complete"><span class="inline-block w-1.5 h-1.5 rounded-full" style="background: #10b981;"></span>Complete</button>
@@ -1320,251 +1276,270 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
   <div data-collapsible-group class="rounded-xl overflow-hidden" style="background: rgba(15,23,42,0.4); border: 1px solid rgba(148,163,184,0.08);">
 
-    <!-- Edison: Complete -->
+    <!-- Milestone: Edison -->
     <div class="row-item" data-status="complete" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-complete mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
             <span class="font-semibold text-white text-sm sm:text-base">Edison</span>
+            <span class="text-xs font-semibold" style="color: #34d399;">100%</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-complete">Complete</span>
-            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">Payment Infrastructure</p>
+          <p class="text-xs sm:text-sm text-slate-400">Foundation & Accounting Infrastructure Design</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">STORE Pay payment infrastructure delivered. Buy Order Form live at <a href="https://storecloud.org/buystore" target="_blank" rel="noopener noreferrer" class="link-arrow underline hover:opacity-75 transition-opacity" style="color: #5eead4;">storecloud.org/buystore</a>.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Foundation & Accounting Infrastructure Design</p>
+          <p class="text-xs text-slate-500 mt-2">2022-2025 (3+ years)</p>
         </div>
       </div>
     </div>
 
-    <!-- Financial Infrastructure -->
-    <div class="row-item" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
+    <!-- Milestone: Financial Infrastructure -->
+    <div class="row-item" data-status="complete" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
-        <div class="dot dot-progress mt-1.5 flex-shrink-0"></div>
+        <div class="dot dot-complete mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
             <span class="font-semibold text-white text-sm sm:text-base">Financial Infrastructure</span>
-            <span class="badge badge-regulatory">Regulatory</span>
-            <span class="badge badge-progress">In Progress</span>
-            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+            <span class="badge badge-regulatory">Operations</span>
+            <span class="badge badge-complete">Complete</span>
+            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">Bank account, payment processing, MME engagement</p>
+          <p class="text-xs sm:text-sm text-slate-400">BitGo custody + QuickBooks + Bitwave crypto accounting</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">Bank account, payment processing, MME engagement on Hybrid Token classification.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">BitGo custody + QuickBooks + Bitwave crypto accounting</p>
+          <p class="text-xs text-slate-500 mt-2">Institutional-grade financial ops</p>
         </div>
       </div>
     </div>
 
-    <!-- D&O for STORE Research -->
+    <!-- Milestone: D&O for STORE Research -->
     <div class="row-item" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-progress mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
-            <span class="font-semibold text-white text-sm sm:text-base">D&amp;O for STORE Research</span>
-            <span class="badge badge-regulatory">Regulatory</span>
+            <span class="font-semibold text-white text-sm sm:text-base">D&O Insurance for STORE Research Inc. (US)</span>
+            <span class="text-xs font-semibold" style="color: #34d399;">50%</span>
+            <span class="badge badge-regulatory">Operations</span>
             <span class="badge badge-progress">In Progress</span>
-            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">Director and Officer Insurance for STORE Research Inc. (US)</p>
+          <p class="text-xs sm:text-sm text-slate-400">Directors & Officers insurance for SR leadership</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">Director and Officer Insurance protects fiduciaries from personal liability while board operates. Required for proper governance structure during the transition period to Switzerland.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Directors & Officers insurance for SR leadership</p>
+          <p class="text-xs text-slate-500 mt-2">Required for institutional growth</p>
         </div>
       </div>
     </div>
 
-    <!-- Tax Letter Strategy -->
+    <!-- Milestone: Tax Letter Strategy -->
     <div class="row-item" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-progress mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
             <span class="font-semibold text-white text-sm sm:text-base">Tax Letter Strategy</span>
+            <span class="text-xs font-semibold" style="color: #34d399;">30%</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-progress">In Progress</span>
-            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">Critical Gate 2 — Favorable tax ruling for asset transfer</p>
+          <p class="text-xs sm:text-sm text-slate-400">Preparing Switzerland integration and asset transfer framework</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">Critical Gate 2 — Favorable tax ruling for asset transfer from STORE Research Inc. (US) to Swiss Association. Memo under preparation.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Preparing Switzerland integration and asset transfer framework</p>
+          <p class="text-xs text-slate-500 mt-2">Required for transfer</p>
         </div>
       </div>
     </div>
 
-    <!-- Legal Counsel Approval -->
+    <!-- Milestone: Legal Counsel Approval -->
     <div class="row-item" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-progress mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
             <span class="font-semibold text-white text-sm sm:text-base">Legal Counsel Approval</span>
+            <span class="text-xs font-semibold" style="color: #34d399;">25%</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-progress">In Progress</span>
-            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">Critical Gate 1 — MME sign-off on payment flows</p>
+          <p class="text-xs sm:text-sm text-slate-400">U.S. and Swiss counsel sign-off on Switzerland structure</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">Critical Gate 1 — MME sign-off on payment flows. ~70% complete, demonstrating autonomous infrastructure status to Swiss counsel.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">U.S. and Swiss counsel sign-off on Switzerland structure</p>
+          <p class="text-xs text-slate-500 mt-2">Required for launch</p>
         </div>
       </div>
     </div>
 
-    <!-- Locke -->
+    <!-- Milestone: Locke -->
     <div class="row-item" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-progress mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
             <span class="font-semibold text-white text-sm sm:text-base">Locke</span>
+            <span class="text-xs font-semibold" style="color: #34d399;">50%</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-progress">In Progress</span>
-            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">Found Swiss Association (STORE Association)</p>
+          <p class="text-xs sm:text-sm text-slate-400">Swiss Association legal founding with MME (entity creation)</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">Found Swiss Association (STORE Association). Establishes the legal entity that will govern the protocol from Switzerland.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Swiss Association legal founding with MME (entity creation)</p>
+          <p class="text-xs text-slate-500 mt-2">50% = preparatory work (tax, regulatory, technical infrastructure)</p>
         </div>
       </div>
     </div>
 
-    <!-- D&O for STORE Association -->
-    <div class="row-item" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
+    <!-- Milestone: D&O for STORE Association -->
+    <div class="row-item" data-status="pending" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
-        <div class="dot dot-progress mt-1.5 flex-shrink-0"></div>
+        <div class="dot dot-pending mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
-            <span class="font-semibold text-white text-sm sm:text-base">D&amp;O for STORE Association</span>
-            <span class="badge badge-regulatory">Regulatory</span>
-            <span class="badge badge-progress">In Progress</span>
-            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span class="font-semibold text-white text-sm sm:text-base">D&O Insurance for STORE Association (Swiss)</span>
+            <span class="badge badge-regulatory">Operations</span>
+            <span class="badge badge-pending">Pending</span>
+            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">Director and Officer Insurance for Swiss Association</p>
+          <p class="text-xs sm:text-sm text-slate-400">Directors & Officers insurance for SA leadership</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">Director and Officer Insurance for Swiss Association. Required before SA can begin formal operations.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Directors & Officers insurance for SA leadership</p>
+          <p class="text-xs text-slate-500 mt-2">Required after SA founding, before asset transfer</p>
         </div>
       </div>
     </div>
 
-    <!-- Marcus Aurelius -->
+    <!-- Milestone: Marcus Aurelius -->
     <div class="row-item" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-progress mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
             <span class="font-semibold text-white text-sm sm:text-base">First Funding Milestone (⅓)</span>
+            <span class="text-xs font-semibold" style="color: #34d399;">69%</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-progress">In Progress</span>
-            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">Marcus Aurelius — $1.33M target</p>
+          <p class="text-xs sm:text-sm text-slate-400">Marcus Aurelius</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm font-semibold mb-1" style="color: #5eead4;">Marcus Aurelius — $1.33M target</p>
-          <p class="text-sm text-slate-300 leading-relaxed">Long-term bonus incentive vote. Initial funding milestone enabling early operational expansion.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Marcus Aurelius</p>
+          <p class="text-sm font-semibold mt-2" style="color: #5eead4;">$1.33M target - $410K remaining to milestone</p>
+          <p class="text-xs text-slate-400 mt-1">Unlocks: Long-term bonus incentive vote</p>
         </div>
       </div>
     </div>
 
-    <!-- Franklin -->
+    <!-- Milestone: Franklin -->
     <div class="row-item" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-progress mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
             <span class="font-semibold text-white text-sm sm:text-base">Franklin</span>
+            <span class="text-xs font-semibold" style="color: #34d399;">25%</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-progress">In Progress</span>
-            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">Public Beta — STORE Pay public release</p>
+          <p class="text-xs sm:text-sm text-slate-400">Founding Elections for STORE Association Stewards</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">Public Beta — STORE Pay public release. Open community access to the platform.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Founding Elections for STORE Association Stewards</p>
+          <p class="text-xs text-slate-500 mt-2">Target 2026</p>
         </div>
       </div>
     </div>
 
-    <!-- Peer Review -->
-    <div class="row-item" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
+    <!-- Milestone: Peer Review -->
+    <div class="row-item" data-status="pending" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
-        <div class="dot dot-progress mt-1.5 flex-shrink-0"></div>
+        <div class="dot dot-pending mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
             <span class="font-semibold text-white text-sm sm:text-base">Peer Review</span>
             <span class="badge badge-regulatory">Regulatory</span>
-            <span class="badge badge-progress">In Progress</span>
-            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span class="badge badge-pending">Pending</span>
+            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">150 institutions invited to peer review</p>
+          <p class="text-xs sm:text-sm text-slate-400">Constitutional mathematics and Hamilton = Lamport validation</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">150 institutions invited to peer review STORE's constitutional mathematics. Stress-test of the core consensus mechanism.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Constitutional mathematics and Hamilton = Lamport validation</p>
+          <p class="text-xs text-slate-500 mt-2">External academic/expert review</p>
         </div>
       </div>
     </div>
 
-    <!-- Paine -->
+    <!-- Milestone: Paine -->
     <div class="row-item" data-status="progress" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-progress mt-1.5 flex-shrink-0"></div>
         <div class="flex-1 min-w-0 flex flex-col">
           <div class="flex items-center gap-2 flex-wrap mb-0.5">
             <span class="font-semibold text-white text-sm sm:text-base">Second Funding Milestone (⅔)</span>
+            <span class="text-xs font-semibold" style="color: #34d399;">70%</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-progress">In Progress</span>
-            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400">Thomas Paine — $2M target</p>
+          <p class="text-xs sm:text-sm text-slate-400">Thomas Paine</p>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm font-semibold mb-1" style="color: #5eead4;">Thomas Paine — $2M target</p>
-          <p class="text-sm text-slate-300 leading-relaxed">D&amp;O insurance, SA setup, asset transfer preparation. Triggers the Switzerland founding sequence.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Thomas Paine</p>
+          <p class="text-sm font-semibold mt-1" style="color: #5eead4;">$2M target - $1.08M remaining</p>
+          <p class="text-xs text-slate-400 mt-1">Unlocks: Funding for D&O insurance, SA founding, and asset transfer preparation</p>
         </div>
       </div>
     </div>
 
-    <!-- Finney -->
+    <!-- Milestone: Finney -->
     <div class="row-item" data-status="pending" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-pending mt-1.5 flex-shrink-0"></div>
@@ -1573,7 +1548,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
             <span class="font-semibold text-white text-sm sm:text-base">Finney</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-pending">Pending</span>
-            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           </div>
           <p class="text-xs sm:text-sm text-slate-400">Release Schedule Vote</p>
         </div>
@@ -1581,12 +1556,13 @@ a, button { -webkit-tap-highlight-color: transparent; }
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">Release Schedule Vote — First Governance votes on token release schedule mechanics.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Release Schedule Vote</p>
+          <p class="text-xs text-slate-500 mt-2">First Governance votes on token release schedule mechanics</p>
         </div>
       </div>
     </div>
 
-    <!-- Hopper -->
+    <!-- Milestone: Hopper -->
     <div class="row-item" data-status="pending" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-pending mt-1.5 flex-shrink-0"></div>
@@ -1595,7 +1571,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
             <span class="font-semibold text-white text-sm sm:text-base">Hopper</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-pending">Pending</span>
-            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+            <span title="In our control" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
           </div>
           <p class="text-xs sm:text-sm text-slate-400">Token Registration Protocol</p>
         </div>
@@ -1603,12 +1579,13 @@ a, button { -webkit-tap-highlight-color: transparent; }
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">Token Registration Protocol — Token holders register wallets for Swiss compliance.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Token Registration Protocol</p>
+          <p class="text-xs text-slate-500 mt-2">Token holders register wallets for Swiss compliance</p>
         </div>
       </div>
     </div>
 
-    <!-- Johnson -->
+    <!-- Milestone: Johnson -->
     <div class="row-item" data-status="pending" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-pending mt-1.5 flex-shrink-0"></div>
@@ -1617,7 +1594,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
             <span class="font-semibold text-white text-sm sm:text-base">Johnson</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-pending">Pending</span>
-            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
           </div>
           <p class="text-xs sm:text-sm text-slate-400">Final Launch Procedures</p>
         </div>
@@ -1625,12 +1602,13 @@ a, button { -webkit-tap-highlight-color: transparent; }
       </button>
       <div class="row-detail">
         <div class="row-detail-inner">
-          <p class="text-sm text-slate-300 leading-relaxed">Final Launch Procedures — Asset transfer execution after tax ruling (moving assets to SA).</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Final Launch Procedures</p>
+          <p class="text-xs text-slate-500 mt-2">Asset transfer execution after tax ruling (moving assets to SA)</p>
         </div>
       </div>
     </div>
 
-    <!-- Armstrong -->
+    <!-- Milestone: Armstrong -->
     <div class="row-item" data-status="pending">
       <button class="row-summary w-full flex items-start gap-3 text-left" onclick="toggleRow(this)" type="button">
         <div class="dot dot-pending mt-1.5 flex-shrink-0"></div>
@@ -1639,7 +1617,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
             <span class="font-semibold text-white text-sm sm:text-base">Third Funding Milestone (Full)</span>
             <span class="badge badge-regulatory">Regulatory</span>
             <span class="badge badge-pending">Pending</span>
-            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span title="External dependency" class="ml-auto"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
           </div>
           <p class="text-xs sm:text-sm text-slate-400">Neil Armstrong — $2.67M target · Switzerland launch</p>
         </div>
@@ -1648,17 +1626,33 @@ a, button { -webkit-tap-highlight-color: transparent; }
       <div class="row-detail">
         <div class="row-detail-inner">
           <p class="text-sm font-semibold mb-1" style="color: #5eead4;">Neil Armstrong — $2.67M target</p>
-          <p class="text-sm text-slate-300 leading-relaxed">Switzerland launch with full legal framework. Third Funding Milestone (Full) — the moment all conditions converge.</p>
+          <p class="text-sm text-slate-300 leading-relaxed">Switzerland launch with full legal framework</p>
         </div>
       </div>
     </div>
 
   </div>
+
+  <!-- Legend -->
+  <div class="flex items-center gap-5 text-xs text-slate-400 mt-5 flex-wrap px-2">
+    <div class="flex items-center gap-2">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+      <span>In our control</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <span>External dependency</span>
+    </div>
+    <span class="w-px h-3 mx-1" style="background: rgba(148,163,184,0.15);"></span>
+    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background: #10b981;"></span>Complete</div>
+    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background: #f59e0b;"></span>In Progress</div>
+    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background: rgba(100,116,139,0.7);"></span>Pending</div>
+  </div>
 </section>
 
 
-<!-- ===== Foundation Infrastructure ===== -->
-<section id="sec-foundation" class="card card-accent-emerald p-6 sm:p-8 mb-5 scroll-mt-20">
+<!-- Foundation Infrastructure -->
+<section class="card card-accent-emerald p-6 sm:p-8 mb-5 scroll-mt-20">
   <div class="flex items-center justify-between flex-wrap gap-3 mb-6">
     <div>
       <p class="section-eyebrow mb-2.5" style="color: #34d399;">Already Built</p>
@@ -1671,28 +1665,29 @@ a, button { -webkit-tap-highlight-color: transparent; }
   </div>
 
   <div class="rounded-xl overflow-hidden" style="background: rgba(15,23,42,0.4); border: 1px solid rgba(16,185,129,0.15);">
-    <!-- Layer 0 -->
+
+    <!-- Layer 0 Infrastructure -->
     <div class="flex items-start gap-4 p-4 sm:p-5" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <div class="dot dot-complete"></div>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 flex-wrap mb-1">
           <span class="font-semibold text-white text-sm sm:text-base">Layer 0 Infrastructure</span>
           <span class="badge badge-complete">Complete</span>
-          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
         </div>
-        <p class="text-sm text-slate-300">5 Global Data Centers — 26,400 vCPUs · 240TB RAM · 12PB Storage</p>
+        <p class="text-sm text-slate-300">5 Global Data Centers - 26,400 vCPUs - 240TB RAM - 12PB Storage</p>
         <p class="text-xs text-slate-500 mt-1">Live since 2022</p>
       </div>
     </div>
 
-    <!-- Monetary System -->
+    <!-- STORE Monetary System -->
     <div class="flex items-start gap-4 p-4 sm:p-5" style="border-bottom: 1px solid rgba(148,163,184,0.06);">
       <div class="dot dot-complete"></div>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 flex-wrap mb-1">
           <span class="font-semibold text-white text-sm sm:text-base">STORE Monetary System</span>
           <span class="badge badge-complete">Complete</span>
-          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
         </div>
         <p class="text-sm text-slate-300">$29.66M private market cap governed democratically</p>
         <p class="text-xs text-slate-500 mt-1">Live since 2017</p>
@@ -1706,9 +1701,9 @@ a, button { -webkit-tap-highlight-color: transparent; }
         <div class="flex items-center gap-2 flex-wrap mb-1">
           <span class="font-semibold text-white text-sm sm:text-base">First Treasury</span>
           <span class="badge badge-complete">Complete</span>
-          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
         </div>
-        <p class="text-sm text-slate-300">$29.66M governed democratically — the first pool of STORE tokens under democratic control</p>
+        <p class="text-sm text-slate-300">$29.66M governed democratically - the first pool of STORE tokens under democratic control</p>
         <p class="text-xs text-slate-500 mt-1">126 governors vote on how it's managed. 5 ballots. 0 constitutional violations. Proof the system works.</p>
       </div>
     </div>
@@ -1720,7 +1715,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
         <div class="flex items-center gap-2 flex-wrap mb-1">
           <span class="font-semibold text-white text-sm sm:text-base">First Governance</span>
           <span class="badge badge-complete">Complete</span>
-          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
         </div>
         <p class="text-sm text-slate-300">126 Governors across 30+ countries, one entity = one vote</p>
         <p class="text-xs text-slate-500 mt-1">Live since 2020</p>
@@ -1734,7 +1729,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
         <div class="flex items-center gap-2 flex-wrap mb-1">
           <span class="font-semibold text-white text-sm sm:text-base">Permanent Storage 1.0</span>
           <span class="badge badge-complete">Complete</span>
-          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
         </div>
         <p class="text-sm text-slate-300">12PB storage with 99.99999999% redundancy</p>
         <p class="text-xs text-slate-500 mt-1">Live since 2023</p>
@@ -1748,75 +1743,38 @@ a, button { -webkit-tap-highlight-color: transparent; }
         <div class="flex items-center gap-2 flex-wrap mb-1">
           <span class="font-semibold text-white text-sm sm:text-base">498 AI Decision Points (scaling to 2,500)</span>
           <span class="badge badge-complete">Complete</span>
-          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>
+          <span title="In our control" class="opacity-70"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
         </div>
         <p class="text-sm text-slate-300">Constitutional AI Governance under democratic control</p>
         <p class="text-xs text-slate-500 mt-1">Live since 2020</p>
       </div>
     </div>
+
+  </div>
+
+  <!-- Status Legend -->
+  <div class="flex items-center gap-5 text-xs text-slate-400 mt-5 flex-wrap px-2">
+    <div class="flex items-center gap-2">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+      <span>In our control</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <span>External dependency</span>
+    </div>
+    <span class="w-px h-3 mx-1" style="background: rgba(148,163,184,0.15);"></span>
+    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background: #10b981;"></span>Complete</div>
+    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background: #f59e0b;"></span>In Progress</div>
+    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background: rgba(100,116,139,0.7);"></span>Pending</div>
   </div>
 </section>
 
-<!-- Status Legend -->
-<div class="flex items-center gap-5 text-xs text-slate-400 mb-8 flex-wrap px-2">
-  <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background: #10b981;"></span>Complete</div>
-  <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background: #f59e0b;"></span>In Progress</div>
-  <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background: rgba(100,116,139,0.7);"></span>Pending</div>
-</div>
-
-<!-- ===== Launch Readiness Status Summary ===== -->
-<section id="sec-readiness" class="card card-accent-blue p-6 sm:p-8 mb-8 scroll-mt-20">
-  <div class="mb-6">
-    <p class="section-eyebrow mb-2.5" style="color: #93c5fd;">Final Check</p>
-    <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Launch Readiness Status</h2>
-  </div>
-
-  <div class="space-y-3 mb-5">
-    <div class="rounded-xl p-4 sm:p-5" style="background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.1);">
-      <div class="flex items-baseline justify-between gap-3 mb-3">
-        <h3 class="text-sm sm:text-base font-semibold text-white">1. Technical Execution Complete</h3>
-        <span class="display-num text-2xl font-bold" style="color: #5eead4;">72%</span>
-      </div>
-      <div class="bar-track" style="height: 4px;"><div class="bar-fill bar-fill-emerald" style="width: 72%; animation-delay: 0.1s;"></div></div>
-      <p class="text-xs text-slate-400 mt-2.5">In active development</p>
-    </div>
-    <div class="rounded-xl p-4 sm:p-5" style="background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.1);">
-      <div class="flex items-baseline justify-between gap-3 mb-3">
-        <h3 class="text-sm sm:text-base font-semibold text-white">2. MME Sign-off on Payment Flows</h3>
-        <span class="display-num text-2xl font-bold" style="color: #5eead4;">45%</span>
-      </div>
-      <div class="bar-track" style="height: 4px;"><div class="bar-fill bar-fill-emerald" style="width: 45%; animation-delay: 0.2s;"></div></div>
-      <p class="text-xs text-slate-400 mt-2.5">COMPASS Step 3 pending</p>
-    </div>
-    <div class="rounded-xl p-4 sm:p-5" style="background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.1);">
-      <div class="flex items-baseline justify-between gap-3 mb-3">
-        <h3 class="text-sm sm:text-base font-semibold text-white">3. Tax Ruling for Asset Transfer</h3>
-        <span class="display-num text-2xl font-bold" style="color: #fbbf24;">30%</span>
-      </div>
-      <div class="bar-track" style="height: 4px;"><div class="bar-fill bar-fill-amber" style="width: 30%; animation-delay: 0.3s;"></div></div>
-      <p class="text-xs text-slate-400 mt-2.5">Memo under preparation</p>
-    </div>
-    <div class="rounded-xl p-4 sm:p-5" style="background: rgba(15,23,42,0.5); border: 1px solid rgba(148,163,184,0.1);">
-      <div class="flex items-baseline justify-between gap-3 mb-3">
-        <h3 class="text-sm sm:text-base font-semibold text-white">4. Funding (Thomas Paine milestone — $2M)</h3>
-        <span class="display-num text-2xl font-bold" style="color: #67e8f9;">85%</span>
-      </div>
-      <div class="bar-track" style="height: 4px;"><div class="bar-fill" style="width: 85%; animation-delay: 0.4s; background: linear-gradient(90deg, #06b6d4, #3b82f6);"></div></div>
-      <p class="text-xs text-slate-400 mt-2.5">Near completion</p>
-    </div>
-  </div>
-
-  <div class="rounded-xl p-4 text-center" style="background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.2);">
-    <p class="text-sm sm:text-base text-slate-200 font-medium">All four must clear. Progress on any three does not constitute launch readiness.</p>
-  </div>
-</section>
 
 </div><!-- end #content-path -->
 
-
-<!-- ##############################
-     TAB 2: THE STORY
-############################## -->
+<!-- ============================================ -->
+<!-- TAB 2: THE STORY - same text as v2.7 -->
+<!-- ============================================ -->
 <div id="content-story" class="tab-content">
 
 <!-- ===== The Window Is Closing ===== -->
@@ -2357,10 +2315,9 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 </div><!-- end #content-story -->
 
-
-<!-- ##############################
-     TAB 3: WHAT WE'RE BUILDING
-############################## -->
+<!-- ============================================ -->
+<!-- TAB 3: WHAT WE'RE BUILDING - same text as v2.7 -->
+<!-- ============================================ -->
 <div id="content-building" class="tab-content">
 
 <!-- ===== S.T.A.R. Moment ===== -->
