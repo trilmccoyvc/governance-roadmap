@@ -463,6 +463,59 @@ a, button { -webkit-tap-highlight-color: transparent; }
   .card-accent-cyan {
     box-shadow: none !important;
   }
+
+  /* ── Scorecard mobile rows ── */
+  .scorecard-row {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+    padding: 10px 12px !important;
+    align-items: flex-start !important;
+  }
+  .scorecard-row > :first-child {
+    /* the # number — hide on mobile, redundancy */
+    display: none;
+  }
+  .scorecard-row > :nth-child(2) {
+    /* item name */
+    font-weight: 600;
+    font-size: 13px;
+    color: #e2e8f0;
+  }
+  .scorecard-row > :nth-child(3) {
+    /* status badge — already col-span-2 on mobile, now first column */
+    margin-top: 2px;
+  }
+
+  /* ── Sprint order: vertical stack instead of arrow-wrap ── */
+  .sprint-order-flow {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    font-size: 13px !important;
+  }
+  .sprint-order-flow .sprint-arrow {
+    display: none;
+  }
+
+  /* ── Build Sequence: remove nested card from rows ── */
+  [data-building] .row-item.card {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom: 1px solid rgba(148,163,184,0.07) !important;
+  }
+  [data-building] .row-item.card:last-child {
+    border-bottom: none !important;
+  }
+  [data-building] .row-summary {
+    padding: 10px 8px !important;
+  }
+  [data-building] .row-summary .badge {
+    margin-left: auto;
+  }
 }
 
 @media print {
@@ -2350,17 +2403,30 @@ a, button { -webkit-tap-highlight-color: transparent; }
 <!-- ===== Sprint Order Explanation ===== -->
 <div class="card p-5 sm:p-6 mb-8">
   <p class="section-eyebrow mb-3" style="color: #5eead4;">Sprint Order</p>
-  <div class="flex items-center gap-2 flex-wrap text-xs sm:text-sm mb-3">
-    <span class="font-semibold" style="color: #60a5fa;">30-Day Sprint (#1-6)</span>
-    <span class="text-slate-600">→</span>
-    <span class="font-semibold" style="color: #a78bfa;">VERIFY Sprint (#7-10)</span>
-    <span class="text-slate-600">→</span>
-    <span class="font-semibold text-slate-200">Required (#11-18)</span>
-    <span class="text-slate-600">→</span>
-    <span class="text-slate-300">Optional (#19-22)</span>
+  <div class="sprint-order-flow flex items-center gap-2 flex-wrap text-xs sm:text-sm mb-3">
+    <span class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full flex-shrink-0 sm:hidden" style="background: #60a5fa;"></span>
+      <span class="font-semibold" style="color: #60a5fa;">30-Day Sprint (#1-6)</span>
+    </span>
+    <span class="sprint-arrow text-slate-600">→</span>
+    <span class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full flex-shrink-0 sm:hidden" style="background: #a78bfa;"></span>
+      <span class="font-semibold" style="color: #a78bfa;">VERIFY Sprint (#7-10)</span>
+    </span>
+    <span class="sprint-arrow text-slate-600">→</span>
+    <span class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full flex-shrink-0 sm:hidden" style="background: #cbd5e1;"></span>
+      <span class="font-semibold text-slate-200">Required (#11-18)</span>
+    </span>
+    <span class="sprint-arrow text-slate-600">→</span>
+    <span class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full flex-shrink-0 sm:hidden" style="background: #94a3b8;"></span>
+      <span class="text-slate-300">Optional (#19-22)</span>
+    </span>
   </div>
   <p class="text-xs sm:text-sm text-slate-400">The 30-Day and VERIFY sprints are substantially complete. Development is now entering the Required phase.</p>
 </div>
+
 
 <!-- ===== Build Sequence ===== -->
 <section class="card p-6 sm:p-8 mb-8">
