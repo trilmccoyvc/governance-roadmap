@@ -361,46 +361,46 @@ body::-webkit-scrollbar {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(5, 10, 24, 0.95);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  /* ── Glass: transparan + blur ── */
+  background: rgba(5, 10, 24, 0.55);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
   border-bottom: 1px solid rgba(148, 163, 184, 0.08);
 }
-/* Gap atas-bawah untuk tombol dropdown di dalam tab bar */
+/* Padding vertikal container dalam tab bar */
 .tab-nav-bar > .max-w-\[960px\] {
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-.tab-nav-bar.is-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 .tab-btn {
   position: relative;
-  padding: 16px 24px;
+  padding: 10px 22px;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--text-tertiary);
   background: transparent;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
   white-space: nowrap;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
   flex-shrink: 0;
 }
-.tab-btn:hover { color: var(--text-secondary); }
-.tab-btn.active { color: #5eead4; }
+.tab-btn:hover {
+  color: var(--text-secondary);
+  background: rgba(148, 163, 184, 0.06);
+}
+.tab-btn.active {
+  color: #5eead4;
+  background: rgba(20, 184, 166, 0.08);
+}
 .tab-btn.active::after {
   content: '';
   position: absolute;
   bottom: -1px;
-  left: 16px;
-  right: 16px;
+  left: 22px;
+  right: 22px;
   height: 2px;
   background: linear-gradient(90deg, transparent, #14b8a6 30%, #14b8a6 70%, transparent);
   border-radius: 2px;
@@ -408,7 +408,7 @@ body::-webkit-scrollbar {
 /* ── Desktop tabs ── */
 .tab-nav-desktop {
   display: flex;
-  gap: 24px;
+  gap: 4px;
   justify-content: center;
 }
 /* ── Mobile tab dropdown ── */
@@ -444,7 +444,7 @@ body::-webkit-scrollbar {
   top: calc(100% + 10px);
   left: 0;
   right: 0;
-  background: rgba(5, 10, 24, 0.85);
+  background: rgba(5, 10, 24, 0.90);
   backdrop-filter: blur(24px) saturate(140%);
   -webkit-backdrop-filter: blur(24px) saturate(140%);
   border: 1px solid rgba(148, 163, 184, 0.12);
@@ -475,7 +475,7 @@ body::-webkit-scrollbar {
   color: #fff;
 }
 .tab-dropdown-option.active { color: #5eead4; }
-/* ── Mobile: swap desktop tabs → dropdown ── */
+/* ── Mobile ── */
 @media (max-width: 640px) {
   .tab-nav-bar > .max-w-\[960px\] {
     padding-top: 10px;
