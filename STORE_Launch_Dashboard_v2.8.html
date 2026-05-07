@@ -358,19 +358,28 @@ body::-webkit-scrollbar {
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
 .tab-nav-bar {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 50;
-  /* ── Glass: transparan + blur ── */
   background: rgba(5, 10, 24, 0.55);
   backdrop-filter: blur(24px) saturate(140%);
   -webkit-backdrop-filter: blur(24px) saturate(140%);
   border-bottom: 1px solid rgba(148, 163, 184, 0.08);
 }
-/* Padding vertikal container dalam tab bar */
 .tab-nav-bar > .max-w-\[960px\] {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+/* ── Fixed state (via JS saat scroll melewati tab bar) ── */
+.tab-nav-bar.is-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.tab-nav-spacer {
+  display: none;
 }
 .tab-btn {
   position: relative;
@@ -453,9 +462,7 @@ body::-webkit-scrollbar {
   z-index: 60;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
-.tab-dropdown.open .tab-dropdown-menu {
-  display: block;
-}
+.tab-dropdown.open .tab-dropdown-menu { display: block; }
 .tab-dropdown-option {
   display: block;
   width: 100%;
@@ -475,7 +482,6 @@ body::-webkit-scrollbar {
   color: #fff;
 }
 .tab-dropdown-option.active { color: #5eead4; }
-/* ── Mobile ── */
 @media (max-width: 640px) {
   .tab-nav-bar > .max-w-\[960px\] {
     padding-top: 10px;
