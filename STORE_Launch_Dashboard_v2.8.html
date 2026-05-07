@@ -390,7 +390,9 @@ body::after {
   background: linear-gradient(90deg, transparent, #14b8a6 30%, #14b8a6 70%, transparent);
   border-radius: 2px;
 }
+/* ── Mobile tab dropdown ── */
 .tab-dropdown { display: none; position: relative; }
+
 .tab-dropdown-toggle {
   display: flex;
   align-items: center;
@@ -399,7 +401,7 @@ body::after {
   font-size: 14px;
   font-weight: 600;
   color: #5eead4;
-  background: rgba(20, 184, 166, 0.08);
+  background: transparent;
   border: 1px solid rgba(20, 184, 166, 0.25);
   border-radius: 12px;
   cursor: pointer;
@@ -408,21 +410,24 @@ body::after {
 }
 .tab-dropdown-toggle svg { flex-shrink: 0; transition: transform 0.2s; }
 .tab-dropdown.open .tab-dropdown-toggle svg { transform: rotate(180deg); }
+
 .tab-dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + 8px);
   left: 0;
   right: 0;
-  background: rgba(15, 23, 42, 0.98);
-  border: 1px solid rgba(148, 163, 184, 0.15);
-  border-radius: 12px;
+  background: rgba(5, 10, 24, 0.85);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 14px;
   overflow: hidden;
   z-index: 60;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 .tab-dropdown.open .tab-dropdown-menu { display: block; }
+
 .tab-dropdown-option {
   display: block;
   width: 100%;
@@ -439,8 +444,10 @@ body::after {
 .tab-dropdown-option:last-child { border-bottom: none; }
 .tab-dropdown-option:hover { background: rgba(148, 163, 184, 0.06); color: #fff; }
 .tab-dropdown-option.active { color: #5eead4; }
+
 /* Desktop tabs unchanged */
-.tab-nav-desktop { display: flex; gap: 24px; }
+.tab-nav-desktop { display: flex; gap: 24px; justify-content: center; }
+
 @media (max-width: 640px) {
   .tab-nav-desktop { display: none; }
   .tab-dropdown { display: block; }
