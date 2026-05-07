@@ -354,8 +354,6 @@ body::after {
   backdrop-filter: blur(20px) saturate(140%);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
   border-bottom: 1px solid rgba(148,163,184,0.08);
-  padding-top: 4px;
-  padding-bottom: 4px;
 }
 .tab-nav-bar.is-fixed {
   position: fixed;
@@ -392,7 +390,61 @@ body::after {
   background: linear-gradient(90deg, transparent, #14b8a6 30%, #14b8a6 70%, transparent);
   border-radius: 2px;
 }
-
+.tab-dropdown { display: none; position: relative; }
+.tab-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5eead4;
+  background: rgba(20, 184, 166, 0.08);
+  border: 1px solid rgba(20, 184, 166, 0.25);
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  justify-content: space-between;
+}
+.tab-dropdown-toggle svg { flex-shrink: 0; transition: transform 0.2s; }
+.tab-dropdown.open .tab-dropdown-toggle svg { transform: rotate(180deg); }
+.tab-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 60;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.tab-dropdown.open .tab-dropdown-menu { display: block; }
+.tab-dropdown-option {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #cbd5e1;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.06);
+}
+.tab-dropdown-option:last-child { border-bottom: none; }
+.tab-dropdown-option:hover { background: rgba(148, 163, 184, 0.06); color: #fff; }
+.tab-dropdown-option.active { color: #5eead4; }
+/* Desktop tabs unchanged */
+.tab-nav-desktop { display: flex; gap: 24px; }
+@media (max-width: 640px) {
+  .tab-nav-desktop { display: none; }
+  .tab-dropdown { display: block; }
+}
 .anchor-rail {
   display: flex;
   gap: 8px;
@@ -598,17 +650,23 @@ a, button { -webkit-tap-highlight-color: transparent; }
 ==================================================== -->
 <div class="tab-nav-bar">
   <div class="max-w-[960px] mx-auto px-4 sm:px-8">
-    <div class="flex justify-center">
-      <div class="tab-nav-inner flex gap-4 sm:gap-8 flex-wrap justify-center">
-        <button onclick="switchTab('path')" id="tab-path" class="tab-btn active">
-          Path to Launch
-        </button>
-        <button onclick="switchTab('story')" id="tab-story" class="tab-btn">
-          The Story
-        </button>
-        <button onclick="switchTab('building')" id="tab-building" class="tab-btn">
-          What We're Building
-        </button>
+    
+    <!-- Desktop tabs -->
+    <div class="tab-nav-desktop justify-center">
+      <button onclick="switchTab('path')" id="tab-path" class="tab-btn active">Path to Launch</button>
+      <button onclick="switchTab('story')" id="tab-story" class="tab-btn">The Story</button>
+      <button onclick="switchTab('building')" id="tab-building" class="tab-btn">What We're Building</button>
+    </div>
+    <!-- Mobile dropdown -->
+    <div class="tab-dropdown" id="tab-dropdown">
+      <button class="tab-dropdown-toggle" onclick="toggleTabDropdown()" type="button">
+        <span id="tab-dropdown-label">Path to Launch</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="tab-dropdown-menu">
+        <button onclick="selectDropdownTab('path', 'Path to Launch', this)" class="tab-dropdown-option active">Path to Launch</button>
+        <button onclick="selectDropdownTab('story', 'The Story', this)" class="tab-dropdown-option">The Story</button>
+        <button onclick="selectDropdownTab('building', 'What We\'re Building', this)" class="tab-dropdown-option">What We're Building</button>
       </div>
     </div>
   </div>
@@ -3220,7 +3278,33 @@ a, button { -webkit-tap-highlight-color: transparent; }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
-
+ // ── Mobile tab dropdown ──
+  window.toggleTabDropdown = function() {
+    var dd = document.getElementById('tab-dropdown');
+    if (dd) dd.classList.toggle('open');
+  };
+  window.selectDropdownTab = function(tabName, label, el) {
+    // Switch tab
+    switchTab(tabName);
+    // Update dropdown label
+    var labelEl = document.getElementById('tab-dropdown-label');
+    if (labelEl) labelEl.textContent = label;
+    // Highlight active option
+    document.querySelectorAll('.tab-dropdown-option').forEach(function(opt) {
+      opt.classList.remove('active');
+    });
+    if (el) el.classList.add('active');
+    // Close dropdown
+    var dd = document.getElementById('tab-dropdown');
+    if (dd) dd.classList.remove('open');
+  };
+  // Tutup dropdown kalau klik di luar
+  document.addEventListener('click', function(e) {
+    var dd = document.getElementById('tab-dropdown');
+    if (dd && !dd.contains(e.target)) {
+      dd.classList.remove('open');
+    }
+  });
   // ============ COLLAPSIBLE BLOCKS (COMPASS, etc.) ============
   window.toggleCollapse = function(id) {
     var body = document.getElementById(id + '-body');
