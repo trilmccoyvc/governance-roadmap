@@ -99,6 +99,7 @@ body::after {
 html {
   scrollbar-width: none;
   -ms-overflow-style: none;
+  overscroll-behavior: none;
 }
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
@@ -359,6 +360,7 @@ body::-webkit-scrollbar {
 
 .tab-nav-bar {
   position: sticky;
+  top: 0;
   z-index: 50;
   background: rgba(5, 10, 24, 0.55);
   backdrop-filter: blur(24px) saturate(140%);
@@ -368,18 +370,6 @@ body::-webkit-scrollbar {
 .tab-nav-bar > .max-w-\[960px\] {
   padding-top: 8px;
   padding-bottom: 8px;
-}
-/* ── Fixed state (via JS saat scroll melewati tab bar) ── */
-.tab-nav-bar.is-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-.tab-nav-spacer {
-  display: none;
 }
 .tab-btn {
   position: relative;
