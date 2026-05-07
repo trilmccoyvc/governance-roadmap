@@ -99,14 +99,13 @@ body::after {
 html {
   scrollbar-width: none;
   -ms-overflow-style: none;
-  overscroll-behavior: none;
 }
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: 0;
   height: 0;
   display: none;
 }
+
   
 /* ============ TYPOGRAPHY ============ */
 .eyebrow {
@@ -359,7 +358,8 @@ body::-webkit-scrollbar {
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
 .tab-nav-bar {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 50;
   background: rgba(5, 10, 24, 0.55);
   backdrop-filter: blur(24px) saturate(140%);
@@ -369,17 +369,6 @@ body::-webkit-scrollbar {
 .tab-nav-bar > .max-w-\[960px\] {
   padding-top: 8px;
   padding-bottom: 8px;
-}
-.tab-nav-bar.is-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-.tab-nav-spacer {
-  display: none;
 }
 .tab-btn {
   position: relative;
@@ -419,11 +408,8 @@ body::-webkit-scrollbar {
   gap: 4px;
   justify-content: center;
 }
-/* ── Mobile tab dropdown ── */
-.tab-dropdown {
-  display: none;
-  position: relative;
-}
+/* ── Mobile dropdown ── */
+.tab-dropdown { display: none; position: relative; }
 .tab-dropdown-toggle {
   display: flex;
   align-items: center;
@@ -443,9 +429,7 @@ body::-webkit-scrollbar {
   flex-shrink: 0;
   transition: transform 0.2s;
 }
-.tab-dropdown.open .tab-dropdown-toggle svg {
-  transform: rotate(180deg);
-}
+.tab-dropdown.open .tab-dropdown-toggle svg { transform: rotate(180deg); }
 .tab-dropdown-menu {
   display: none;
   position: absolute;
