@@ -368,15 +368,6 @@ html::-webkit-scrollbar {
   padding-top: 8px;
   padding-bottom: 8px;
 }
-.tab-nav-bar.is-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-.tab-nav-spacer { display: none; }
 .tab-btn {
   position: relative;
   padding: 10px 22px;
@@ -3408,37 +3399,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
   } else {
     init();
   }
-})();
-</script>
-  <script>
-(function() {
-    var bar = document.querySelector('.tab-nav-bar');
-    if (!bar) return;
-    var offset = 0, fixed = false;
-    function m() { offset = bar.getBoundingClientRect().top; }
-    m(); window.addEventListener('resize', m);
-    setTimeout(m, 600); setTimeout(m, 1800);
-
-    window.addEventListener('message', function(e) {
-        if (!e.data || e.data.type !== 'parentScroll') return;
-        var t = e.data.iframeTop;
-        if (t < 0 && Math.abs(t) >= offset) {
-            if (!fixed) {
-                bar.classList.add('is-fixed');
-                var s = document.createElement('div');
-                s.className = 'tab-nav-spacer';
-                s.style.display = 'block';
-                s.style.height = bar.offsetHeight + 'px';
-                bar.parentNode.insertBefore(s, bar);
-                fixed = true;
-            }
-        } else if (fixed) {
-            bar.classList.remove('is-fixed');
-            var sp = document.querySelector('.tab-nav-spacer');
-            if (sp) sp.remove();
-            fixed = false;
-        }
-    });
 })();
 </script>
 </body>
