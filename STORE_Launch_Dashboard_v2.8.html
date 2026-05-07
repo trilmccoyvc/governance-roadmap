@@ -359,8 +359,7 @@ body::-webkit-scrollbar {
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
 .tab-nav-bar {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 50;
   background: rgba(5, 10, 24, 0.55);
   backdrop-filter: blur(24px) saturate(140%);
@@ -370,6 +369,17 @@ body::-webkit-scrollbar {
 .tab-nav-bar > .max-w-\[960px\] {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+.tab-nav-bar.is-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.tab-nav-spacer {
+  display: none;
 }
 .tab-btn {
   position: relative;
@@ -404,7 +414,6 @@ body::-webkit-scrollbar {
   background: linear-gradient(90deg, transparent, #14b8a6 30%, #14b8a6 70%, transparent);
   border-radius: 2px;
 }
-/* ── Desktop tabs ── */
 .tab-nav-desktop {
   display: flex;
   gap: 4px;
@@ -3426,52 +3435,63 @@ a, button { -webkit-tap-highlight-color: transparent; }
 </script>
   <script>
 (function() {
-    const tabBar = document.querySelector('.tab-nav-bar');
+    var tabBar = document.querySelector('.tab-nav-bar');
     if (!tabBar) return;
 
-    let tabBarTop = 0;    // posisi tab bar relatif terhadap dokumen iframe
-    let isFixed = false;
+    var tabBarOffset = 0;
+    function measure() { tabBarOffset = tabBar.getBoundingClientRect().top; }
+    measure();
+    window.addEventListener('resize', measure);
 
-    // Ukur posisi asli tab bar dalam dokumen
-    function measureTabBarPosition() {
-        tabBarTop = tabBar.getBoundingClientRect().top + window.scrollY;
-    }
-    measureTabBarPosition();
-    window.addEventListener('resize', measureTabBarPosition);
+    var isFixed = false;
 
-    // Terima data scroll dari parent page
+    // ── Handshake: balas ke parent ──
+    window.addEventListener('message', function(e) {
+        if (!e.data) return;
+        if (e.data.type === 'stickyHello') {
+            window.parent.postMessage({ type: 'stickyReady' }, '*');
+            measure();
+        }
+    });
+
+    // Kirim stickyReady juga saat halaman selesai load
+    window.addEventListener('load', function() {
+        measure();
+        window.parent.postMessage({ type: 'stickyReady' }, '*');
+    });
+
+    // Kirim setiap 300ms selama 3 detik pertama (fallback)
+    var count = 0;
+    var readyInterval = setInterval(function() {
+        if (count++ > 10) { clearInterval(readyInterval); return; }
+        window.parent.postMessage({ type: 'stickyReady' }, '*');
+    }, 300);
+
+    // ── Terima data scroll dari parent ──
     window.addEventListener('message', function(e) {
         if (!e.data || e.data.type !== 'parentScroll') return;
+        var iframeTop = e.data.iframeTop;
 
-        const { iframeTop } = e.data;
-        // iframeTop = jarak dari atas viewport parent ke atas iframe
-        // Kalau iframeTop negatif, artinya iframe sudah di-scroll melewati atas layar
-
-        const shouldFix = iframeTop <= 0 && tabBarTop <= Math.abs(iframeTop);
-
-        if (shouldFix && !isFixed) {
-            tabBar.classList.add('is-fixed');
-            
-            // Kompensasi: tambahkan placeholder spacer agar konten tidak lompat
-            const spacer = document.createElement('div');
-            spacer.className = 'tab-nav-spacer';
-            spacer.style.height = tabBar.offsetHeight + 'px';
-            tabBar.parentNode.insertBefore(spacer, tabBar);
-            
-            isFixed = true;
-        } else if (!shouldFix && isFixed) {
-            tabBar.classList.remove('is-fixed');
-            
-            // Hapus spacer
-            const spacer = document.querySelector('.tab-nav-spacer');
-            if (spacer) spacer.remove();
-            
-            isFixed = false;
+        if (iframeTop < 0 && Math.abs(iframeTop) >= tabBarOffset) {
+            if (!isFixed) {
+                tabBar.classList.add('is-fixed');
+                var spacer = document.createElement('div');
+                spacer.className = 'tab-nav-spacer';
+                spacer.style.display = 'block';
+                spacer.style.height = tabBar.offsetHeight + 'px';
+                tabBar.parentNode.insertBefore(spacer, tabBar);
+                isFixed = true;
+            }
+        } else {
+            if (isFixed) {
+                tabBar.classList.remove('is-fixed');
+                var spacer = document.querySelector('.tab-nav-spacer');
+                if (spacer) spacer.remove();
+                isFixed = false;
+            }
         }
     });
 })();
 </script>
-
-
 </body>
 </html>
