@@ -7,17 +7,15 @@
 
 <script src="https://cdn.tailwindcss.com" defer></script>
 <script>
-window.addEventListener('DOMContentLoaded', function() {
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ['Montserrat', 'sans-serif'],
-        }
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Montserrat', 'sans-serif'],
       }
     }
   }
-});
+}
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,7 +92,9 @@ body::after {
   mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, black 30%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, black 30%, transparent 80%);
 }
+
 /* ============ TYPOGRAPHY ============ */
+
 .eyebrow {
   font-size: 11px;
   font-weight: 600;
@@ -345,51 +345,42 @@ body::after {
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
 .tab-nav-bar {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 50;
-  background: rgba(5, 10, 24, 0.55);
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  background: rgba(5, 10, 24, 0.95);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-bottom: 1px solid rgba(148,163,184,0.08);
 }
-.tab-nav-bar > .max-w-\[960px\] {
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
+
 .tab-btn {
   position: relative;
-  padding: 10px 22px;
+  padding: 16px 24px;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--text-tertiary);
   background: transparent;
   border: none;
-  border-radius: 10px;
   cursor: pointer;
   white-space: nowrap;
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast);
   flex-shrink: 0;
 }
-.tab-btn:hover {
-  color: var(--text-secondary);
-  background: rgba(148, 163, 184, 0.06);
-}
-.tab-btn.active {
-  color: #5eead4;
-  background: rgba(20, 184, 166, 0.08);
-}
+.tab-btn:hover { color: var(--text-secondary); }
+.tab-btn.active { color: #5eead4; }
 .tab-btn.active::after {
   content: '';
   position: absolute;
   bottom: -1px;
-  left: 22px;
-  right: 22px;
+  left: 16px;
+  right: 16px;
   height: 2px;
   background: linear-gradient(90deg, transparent, #14b8a6 30%, #14b8a6 70%, transparent);
   border-radius: 2px;
 }
-.tab-nav-desktop { display: flex; gap: 4px; justify-content: center; }
+/* ── Mobile tab dropdown ── */
 .tab-dropdown { display: none; position: relative; }
 .tab-dropdown-toggle {
   display: flex;
@@ -399,7 +390,7 @@ body::after {
   font-size: 14px;
   font-weight: 600;
   color: #5eead4;
-  background: transparent;
+  background: rgba(20, 184, 166, 0.08);
   border: 1px solid rgba(20, 184, 166, 0.25);
   border-radius: 12px;
   cursor: pointer;
@@ -411,17 +402,16 @@ body::after {
 .tab-dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
-  background: rgba(5, 10, 24, 0.90);
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  border: 1px solid rgba(148, 163, 184, 0.12);
-  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 12px;
   overflow: hidden;
   z-index: 60;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 .tab-dropdown.open .tab-dropdown-menu { display: block; }
 .tab-dropdown-option {
@@ -440,8 +430,9 @@ body::after {
 .tab-dropdown-option:last-child { border-bottom: none; }
 .tab-dropdown-option:hover { background: rgba(148, 163, 184, 0.06); color: #fff; }
 .tab-dropdown-option.active { color: #5eead4; }
+/* Desktop tabs unchanged */
+.tab-nav-desktop { display: flex; gap: 24px; }
 @media (max-width: 640px) {
-  .tab-nav-bar > .max-w-\[960px\] { padding-top: 10px; padding-bottom: 10px; }
   .tab-nav-desktop { display: none; }
   .tab-dropdown { display: block; }
 }
@@ -504,13 +495,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
   /* FIX #8: Tabs wrap on small screens */
   .tab-nav-inner { flex-wrap: wrap !important; justify-content: center !important; gap: 0 !important; }
   .tab-btn { padding: 12px 16px !important; font-size: 13px !important; }
-  .tab-nav-bar.is-fixed {
-    padding-top: 2px;
-    padding-bottom: 2px;
-  }
-  .tab-nav-spacer {
-    display: block;
-  }
 
   /* ── A. Kurangi padding outer card — biar inner box lebih lebar ── */
   .card {
@@ -657,6 +641,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
       <button onclick="switchTab('story')" id="tab-story" class="tab-btn">The Story</button>
       <button onclick="switchTab('building')" id="tab-building" class="tab-btn">What We're Building</button>
     </div>
+
     <!-- Mobile dropdown -->
     <div class="tab-dropdown" id="tab-dropdown">
       <button class="tab-dropdown-toggle" onclick="toggleTabDropdown()" type="button">
@@ -669,6 +654,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
         <button onclick="selectDropdownTab('building', 'What We\'re Building', this)" class="tab-dropdown-option">What We're Building</button>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -2654,11 +2640,11 @@ a, button { -webkit-tap-highlight-color: transparent; }
       <button class="row-summary w-full" onclick="toggleRow(this)" type="button">
         <div class="dot dot-complete"></div>
         <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="text-xs text-slate-500 font-mono">#7</span>
-            <span class="font-semibold text-white text-sm sm:text-base">VERIFY Protocol — STORE Pay</span>
-            <span class="badge badge-blockchain">Blockchain</span>
-          </div>
+          <div class="flex items-center gap-2">
+    <span class="text-xs text-slate-500 font-mono flex-shrink-0">#8</span>
+    <span class="font-semibold text-white text-sm sm:text-base min-w-0 truncate">VERIFY Protocol — STORE Governance</span>
+    <span class="badge badge-blockchain flex-shrink-0">Blockchain</span>
+</div>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -2674,11 +2660,11 @@ a, button { -webkit-tap-highlight-color: transparent; }
       <button class="row-summary w-full" onclick="toggleRow(this)" type="button">
         <div class="dot dot-pending"></div>
         <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2">
-    <span class="text-xs text-slate-500 font-mono flex-shrink-0">#8</span>
-    <span class="font-semibold text-white text-sm sm:text-base min-w-0 truncate">VERIFY Protocol — STORE Governance</span>
-    <span class="badge badge-blockchain flex-shrink-0">Blockchain</span>
-</div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-xs text-slate-500 font-mono">#8</span>
+            <span class="font-semibold text-white text-sm sm:text-base">VERIFY Protocol — STORE Governance</span>
+            <span class="badge badge-blockchain">Blockchain</span>
+          </div>
         </div>
         <svg class="chev row-chev flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(148,163,184,0.5)" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -3278,33 +3264,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
- // ── Mobile tab dropdown ──
-  window.toggleTabDropdown = function() {
-    var dd = document.getElementById('tab-dropdown');
-    if (dd) dd.classList.toggle('open');
-  };
-  window.selectDropdownTab = function(tabName, label, el) {
-    // Switch tab
-    switchTab(tabName);
-    // Update dropdown label
-    var labelEl = document.getElementById('tab-dropdown-label');
-    if (labelEl) labelEl.textContent = label;
-    // Highlight active option
-    document.querySelectorAll('.tab-dropdown-option').forEach(function(opt) {
-      opt.classList.remove('active');
-    });
-    if (el) el.classList.add('active');
-    // Close dropdown
-    var dd = document.getElementById('tab-dropdown');
-    if (dd) dd.classList.remove('open');
-  };
-  // Tutup dropdown kalau klik di luar
-  document.addEventListener('click', function(e) {
-    var dd = document.getElementById('tab-dropdown');
-    if (dd && !dd.contains(e.target)) {
-      dd.classList.remove('open');
-    }
-  });
+
   // ============ COLLAPSIBLE BLOCKS (COMPASS, etc.) ============
   window.toggleCollapse = function(id) {
     var body = document.getElementById(id + '-body');
@@ -3346,6 +3306,35 @@ a, button { -webkit-tap-highlight-color: transparent; }
     }
     requestAnimationFrame(tick);
   }
+  // ── Mobile tab dropdown ──
+  window.toggleTabDropdown = function() {
+    var dd = document.getElementById('tab-dropdown');
+    if (dd) dd.classList.toggle('open');
+  };
+
+  window.selectDropdownTab = function(tabName, label, el) {
+    // Switch tab
+    switchTab(tabName);
+    // Update dropdown label
+    var labelEl = document.getElementById('tab-dropdown-label');
+    if (labelEl) labelEl.textContent = label;
+    // Highlight active option
+    document.querySelectorAll('.tab-dropdown-option').forEach(function(opt) {
+      opt.classList.remove('active');
+    });
+    if (el) el.classList.add('active');
+    // Close dropdown
+    var dd = document.getElementById('tab-dropdown');
+    if (dd) dd.classList.remove('open');
+  };
+
+  // Tutup dropdown kalau klik di luar
+  document.addEventListener('click', function(e) {
+    var dd = document.getElementById('tab-dropdown');
+    if (dd && !dd.contains(e.target)) {
+      dd.classList.remove('open');
+    }
+  });
 
   // (Anchor chips are now static labels — scroll handler removed)
 
@@ -3389,5 +3378,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
   }
 })();
 </script>
+
 </body>
 </html>
