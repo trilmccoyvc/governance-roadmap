@@ -430,7 +430,6 @@ body::after {
 .tab-dropdown-option:last-child { border-bottom: none; }
 .tab-dropdown-option:hover { background: rgba(148, 163, 184, 0.06); color: #fff; }
 .tab-dropdown-option.active { color: #5eead4; }
-/* Desktop tabs unchanged */
 .tab-nav-desktop { display: flex; gap: 24px; }
 @media (max-width: 640px) {
   .tab-nav-desktop { display: none; }
@@ -491,12 +490,8 @@ a, button { -webkit-tap-highlight-color: transparent; }
   body::after { background-size: 32px 32px; }
   .row-summary { padding: 12px 12px; gap: 10px; }
   .row-detail-inner { padding: 0 12px 14px 36px; }
-
-  /* FIX #8: Tabs wrap on small screens */
   .tab-nav-inner { flex-wrap: wrap !important; justify-content: center !important; gap: 0 !important; }
   .tab-btn { padding: 12px 16px !important; font-size: 13px !important; }
-
-  /* ── A. Kurangi padding outer card — biar inner box lebih lebar ── */
   .card {
     padding: 14px !important;
     box-shadow: none !important;
@@ -511,8 +506,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
     padding: 14px !important;
     box-shadow: none !important;
   }
-
-  /* ── B. Scorecard: stack vertikal ── */
   .scorecard-row {
     grid-template-columns: 1fr !important;
     gap: 4px !important;
@@ -527,7 +520,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
   }
   .scorecard-row > :nth-child(3) { margin-top: 2px; }
 
-  /* ── C. Sprint Order: list vertikal ── */
   .sprint-order-flow {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -536,7 +528,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
   }
   .sprint-order-flow .sprint-arrow { display: none; }
 
-  /* ── D. Build Sequence mobile: force left-align everything ── */
   [data-building] .row-item {
     text-align: left !important;
     border-bottom: 1px solid rgba(148,163,184,0.07) !important;
@@ -3236,7 +3227,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 </div><!-- end #main-wrapper -->
 
 <!-- ====================================================
-     JAVASCRIPT — minimal, non-blocking
+     JAVASCRIPT
 ==================================================== -->
 <script>
 (function() {
@@ -3286,8 +3277,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
     if (chev) chev.classList.toggle('open');
   };
 
-  // (Filter chips are now static labels — filter handler removed)
-
   // ============ HERO COUNT-UP (single, lightweight) ============
   function animateHero() {
     var el = document.getElementById('hero-num');
@@ -3336,8 +3325,6 @@ a, button { -webkit-tap-highlight-color: transparent; }
     }
   });
 
-  // (Anchor chips are now static labels — scroll handler removed)
-
   // ============ IFRAME RESIZE OBSERVER (preserved from v2) ============
   var wrapper = document.getElementById('main-wrapper');
   function sendHeight() {
@@ -3359,16 +3346,13 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
   // ============ INITIALIZATION ============
   function init() {
-    // Show first tab
     if (!document.querySelector('.tab-content.active')) {
       switchTab('path');
     }
-    // Hero animation
     animateHero();
-    // Send initial height to parent
     setTimeout(sendHeight, 150);
-    setTimeout(sendHeight, 600); // After bar fills
-    setTimeout(sendHeight, 1500); // After tab fade
+    setTimeout(sendHeight, 600); 
+    setTimeout(sendHeight, 1500); 
   }
 
   if (document.readyState === 'loading') {
