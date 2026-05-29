@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STORE Launch Dashboard - AI Infrastructure Humanity Can Govern</title>
 
-<script src="https://cdn.tailwindcss.com" defer></script>
+<script src="https://cdn.tailwindcss.com"</script>
 <script>
 tailwind.config = {
   theme: {
@@ -3325,35 +3325,48 @@ a, button { -webkit-tap-highlight-color: transparent; }
     }
   });
 
-  // ============ IFRAME RESIZE OBSERVER (preserved from v2) ============
-  var wrapper = document.getElementById('main-wrapper');
-  function sendHeight() {
+  // ============ IFRAME RESIZE OBSERVER ============
+var wrapper = document.getElementById('main-wrapper');
+
+function sendHeight() {
     if (!wrapper) return;
     var height = wrapper.getBoundingClientRect().height;
     if (window.parent !== window) {
-      window.parent.postMessage({ type: 'iframeHeight', height: height }, '*');
+        window.parent.postMessage({ type: 'iframeHeight', height: height }, '*');
     }
-  }
+}
 
-  if (typeof ResizeObserver !== 'undefined' && wrapper) {
+if (typeof ResizeObserver !== 'undefined' && wrapper) {
     var ro = new ResizeObserver(function() { sendHeight(); });
     ro.observe(wrapper);
-  } else {
-    // Fallback for older browsers
-    window.addEventListener('load', sendHeight);
-    window.addEventListener('resize', sendHeight);
-  }
+}
 
-  // ============ INITIALIZATION ============
-  function init() {
+// ============ INITIALIZATION ============
+function init() {
     if (!document.querySelector('.tab-content.active')) {
-      switchTab('path');
+        switchTab('path');
     }
     animateHero();
-    setTimeout(sendHeight, 150);
-    setTimeout(sendHeight, 600); 
-    setTimeout(sendHeight, 1500); 
-  }
+}
+
+// Init DOM dulu (interaksi & animasi)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+
+// sendHeight HANYA setelah semua resource selesai (font, Tailwind, gambar)
+window.addEventListener('load', function() {
+    // Double rAF — pastikan Tailwind & font sudah paint
+    requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+            sendHeight();
+            // Kirim ulang 500ms setelah load untuk antisipasi font swap
+            setTimeout(sendHeight, 500);
+        });
+    });
+});
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
