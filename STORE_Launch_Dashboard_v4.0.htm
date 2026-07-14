@@ -2759,20 +2759,23 @@
 
             // ── Tabs ──
             window.switchTab = function(tabName) {
-                document.querySelectorAll('.tab-btn').forEach(function(btn) { btn.classList.remove('active'); });
-                var activeBtn = document.getElementById('tab-' + tabName);
-                if (activeBtn) activeBtn.classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(function(btn) { btn.classList.remove('active'); });
+    var activeBtn = document.getElementById('tab-' + tabName);
+    if (activeBtn) activeBtn.classList.add('active');
 
-                document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
-                var activeContent = document.getElementById('content-' + tabName);
-                if (activeContent) activeContent.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+    var activeContent = document.getElementById('content-' + tabName);
+    if (activeContent) activeContent.classList.add('active');
 
-                if (window.parent !== window) {
-                    window.parent.postMessage({ type: 'scrollToTop' }, '*');
-                } else {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-            };
+    if (window.parent !== window) {
+        window.parent.postMessage({ type: 'scrollToTop' }, '*');
+    } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Kirim ulang tinggi iframe setelah konten berubah
+    sendHeight(); // <-- tambahkan baris ini
+};
 
             // ── Collapsible ──
             window.toggleCollapse = function(id) {
